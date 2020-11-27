@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "819788156392",
-    "firebase_url": "https://mr-farmer-grocer.firebaseio.com",
-    "project_id": "mr-farmer-grocer",
-    "storage_bucket": "mr-farmer-grocer.appspot.com"
+    "project_number": "8982364054",
+    "firebase_url": "https://mr-farmer-grocer-9414c.firebaseio.com",
+    "project_id": "mr-farmer-grocer-9414c",
+    "storage_bucket": "mr-farmer-grocer-9414c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:819788156392:android:d464f648d1ad656a7ea85d",
+        "mobilesdk_app_id": "1:8982364054:android:1322b7381637d211d227b7",
         "android_client_info": {
           "package_name": "com.example.mrfarmergrocer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "819788156392-mg0vqgglatv1iss1tndnnt886puerkod.apps.googleusercontent.com",
+          "client_id": "8982364054-im1hrskogs8ninsdkp26p5llt09ccrbj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.mrfarmergrocer",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "819788156392-jveo0khutean70hm0bidfqm9b39iiu7i.apps.googleusercontent.com",
+          "client_id": "8982364054-7c0rg83r62pb4ntaj06r6e3j5jmjo5ho.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBmUcTCq79YeVo0fW1lletZWLT37uImSsc"
+          "current_key": "AIzaSyBmsgEgtOnboyBL-rDPD5ptEByqPN0r5-A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "819788156392-jveo0khutean70hm0bidfqm9b39iiu7i.apps.googleusercontent.com",
+              "client_id": "8982364054-7c0rg83r62pb4ntaj06r6e3j5jmjo5ho.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
