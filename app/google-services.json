@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "819788156392",
+    "firebase_url": "https://mr-farmer-grocer.firebaseio.com",
+    "project_id": "mr-farmer-grocer",
+    "storage_bucket": "mr-farmer-grocer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819788156392:android:d464f648d1ad656a7ea85d",
+        "android_client_info": {
+          "package_name": "com.example.mrfarmergrocer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819788156392-mg0vqgglatv1iss1tndnnt886puerkod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mrfarmergrocer",
+            "certificate_hash": "0ac0b14170abda29704815629fbe375533601d59"
+          }
+        },
+        {
+          "client_id": "819788156392-jveo0khutean70hm0bidfqm9b39iiu7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmUcTCq79YeVo0fW1lletZWLT37uImSsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819788156392-jveo0khutean70hm0bidfqm9b39iiu7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
