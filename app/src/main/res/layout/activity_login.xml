@@ -105,7 +105,8 @@
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/forgot_password_textSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_password" />
+        app:layout_constraintTop_toBottomOf="@id/til_password"
+        android:layout_marginRight="16dp" />
 
     <com.example.mrfarmergrocer.utils.MFGButton
         android:id="@+id/btn_login"
