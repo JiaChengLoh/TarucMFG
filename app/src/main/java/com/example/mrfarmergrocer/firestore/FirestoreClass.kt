@@ -1,6 +1,8 @@
 package com.example.mrfarmergrocer.firestore
 
 import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import com.example.mrfarmergrocer.models.User
 import com.example.mrfarmergrocer.ui.activities.LoginActivity
@@ -30,6 +32,7 @@ class FirestoreClass {
                 // Here call a function of base activity for transferring the result to it.
                 activity.userRegistrationSuccess()
             }
+
             .addOnFailureListener { e ->
                 activity.hideProgressDialog()
                 Log.e(
@@ -67,15 +70,28 @@ class FirestoreClass {
                     // Here we have received the document snapshot which is converted into the User Data model object.
                     val user = document.toObject(User::class.java)!!
 
-                    // TODO Step 6: Pass the result to the Login Activity.
-                    // START
+                    val sharedPreferences =
+                        activity.getSharedPreferences(
+                            Constants.MRFARMERGROCER_PREFERENCES,
+                            Context.MODE_PRIVATE
+                        )
+
+                    // Create an instance of the editor which is help us to edit the SharedPreference.
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.putString(
+                        Constants.LOGGED_IN_USERNAME,
+                        "${user.firstName} ${user.lastName}"
+                    )
+                    editor.apply()
+
+
                     when (activity) {
                         is LoginActivity -> {
                             // Call a function of base activity for transferring the result to it.
                             activity.userLoggedInSuccess(user)
                         }
                     }
-                    // END
+
                 }
                 .addOnFailureListener { e ->
                     // Hide the progress dialog if there is any error. And print the error in log.
