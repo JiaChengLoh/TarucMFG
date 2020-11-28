@@ -85,7 +85,7 @@ class RegisterActivity : BaseActivity() {
             }
 
             et_password.text.toString().trim { it <= ' ' } != et_confirm_password.text.toString()
-                .trim { it <= ' ' } -> {
+                    .trim { it <= ' ' } -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_password_and_confirm_password_mismatch), true)
                 false
             }
@@ -109,24 +109,24 @@ class RegisterActivity : BaseActivity() {
 
             // Create an instance and create a register a user with email and password.
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(
-                    OnCompleteListener<AuthResult> { task ->
+                    .addOnCompleteListener(
+                            OnCompleteListener<AuthResult> { task ->
 
-                        // If the registration is successfully done
-                        if (task.isSuccessful) {
+                                // If the registration is successfully done
+                                if (task.isSuccessful) {
 
-                            // Firebase registered user
-                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                                    // Firebase registered user
+                                    val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                            showErrorSnackBar(
-                                "You are registered successfully. Your user id is ${firebaseUser.uid}",
-                                false
-                            )
-                        } else {
-                            // If the registering is not successful then show error message.
-                            showErrorSnackBar(task.exception!!.message.toString(), true)
-                        }
-                    })
+                                    showErrorSnackBar(
+                                            "You are registered successfully. Your user id is ${firebaseUser.uid}",
+                                            false
+                                    )
+                                } else {
+                                    // If the registering is not successful then show error message.
+                                    showErrorSnackBar(task.exception!!.message.toString(), true)
+                                }
+                            })
         }
     }
 }
