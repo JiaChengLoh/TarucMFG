@@ -96,7 +96,6 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
                     if (validateUserProfileDetails()) {
 
-
                         // Show the progress dialog.
                         showProgressDialog(resources.getString(R.string.please_wait))
 
@@ -239,7 +238,6 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         userHashMap[Constants.GENDER] = gender
 
-        // TODO Step 2: Update the field value that the profile is completed.
         // START
         // 0: User profile is incomplete.
         // 1: User profile is completed.

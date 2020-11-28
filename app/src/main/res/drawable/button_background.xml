@@ -4,8 +4,8 @@
 
     <gradient
         android:angle="360"
-        android:endColor="@color/colorTheme青色呱"
         android:startColor="@color/colorTheme蓝色呱"
+        android:endColor="@color/colorTheme青色呱"
         android:type="linear" />
 
     <corners android:radius="@dimen/button_background_radius" />

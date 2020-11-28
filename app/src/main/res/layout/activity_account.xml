@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.MainActivity">
+    tools:context=".ui.activities.AccountActivity">
 
     <FrameLayout
         android:id="@+id/fl_wrapper"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Home"
+            android:text="Account"
             android:textSize="36sp" />
     </FrameLayout>
 
