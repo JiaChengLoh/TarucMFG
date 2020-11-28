@@ -8,6 +8,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
 import com.example.mrfarmergrocer.R
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
             )
         }
 
-        val tv_register: TextView = findViewById(R.id.tv_register)
         tv_register.setOnClickListener {
 
             // Launch the register screen when the user clicks on the text.

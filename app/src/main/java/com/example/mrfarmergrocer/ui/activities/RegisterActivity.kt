@@ -8,17 +8,13 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.*
 import com.example.mrfarmergrocer.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
-
-    var btn_register: Button = findViewById(R.id.btn_register)
-    var toolbar_register_activity: Toolbar = findViewById(R.id.toolbar_register_activity)
-    var et_confirm_password: EditText = findViewById(R.id.et_confirm_password)
-    var et_email: EditText = findViewById(R.id.et_email)
-    var et_first_name: EditText = findViewById(R.id.et_first_name)
-    var et_last_name: EditText = findViewById(R.id.et_last_name)
-    var et_password: EditText = findViewById(R.id.et_password)
-    var cb_terms_and_condition: CheckBox = findViewById(R.id.cb_terms_and_condition)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +30,8 @@ class RegisterActivity : BaseActivity() {
             )
         }
 
-        //setupActionBar()
+        setupActionBar()
 
-        val tv_login: TextView = findViewById(R.id.tv_login)
         tv_login.setOnClickListener {
 
             // Launch the register screen when the user clicks on the text.
@@ -46,22 +41,21 @@ class RegisterActivity : BaseActivity() {
 
         btn_register.setOnClickListener {
 
-            validateRegisterDetails()
+            registerUser()
         }
     }
 
-    //private fun setupActionBar() {
+    private fun setupActionBar() {
 
-        //setSupportActionBar(findViewById(R.id.toolbar_register_activity)
+        setSupportActionBar(toolbar_register_activity)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24)
+        }
 
-        //val actionBar = supportActionBar
-        //if (actionBar != null) {
-            //actionBar.setDisplayHomeAsUpEnabled(true)
-            //actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24)
-        //}
-
-        //toolbar_register_activity.setNavigationOnClickListener { onBackPressed() }
-    //}
+        toolbar_register_activity.setNavigationOnClickListener { onBackPressed() }
+    }
 
     private fun validateRegisterDetails(): Boolean {
         return when {
@@ -100,9 +94,39 @@ class RegisterActivity : BaseActivity() {
                 false
             }
             else -> {
-                showErrorSnackBar("Your details are valid.", false)
                 true
             }
+        }
+    }
+
+    private fun registerUser() {
+
+        // Check with validate function if the entries are valid or not.
+        if (validateRegisterDetails()) {
+
+            val email: String = et_email.text.toString().trim { it <= ' ' }
+            val password: String = et_password.text.toString().trim { it <= ' ' }
+
+            // Create an instance and create a register a user with email and password.
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(
+                    OnCompleteListener<AuthResult> { task ->
+
+                        // If the registration is successfully done
+                        if (task.isSuccessful) {
+
+                            // Firebase registered user
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+
+                            showErrorSnackBar(
+                                "You are registered successfully. Your user id is ${firebaseUser.uid}",
+                                false
+                            )
+                        } else {
+                            // If the registering is not successful then show error message.
+                            showErrorSnackBar(task.exception!!.message.toString(), true)
+                        }
+                    })
         }
     }
 }
