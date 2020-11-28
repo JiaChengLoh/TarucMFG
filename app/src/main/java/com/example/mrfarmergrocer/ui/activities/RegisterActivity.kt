@@ -28,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         tv_login.setOnClickListener {
 
             // Launch the register screen when the user clicks on the text.
-            val intent = Intent(this@RegisterActivity, RegisterActivity::class.java)
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

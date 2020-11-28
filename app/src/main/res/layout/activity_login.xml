@@ -16,11 +16,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="411dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/content_description"
             android:scaleType="fitXY"
-            android:src="@drawable/auth_screens_background" />
+            android:src="@drawable/img_splash_background" />
 
         <ImageView
             android:layout_width="@dimen/auth_logo_width_size"
@@ -28,8 +28,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
-            android:src="@drawable/tutorials_eu_logo"
-            app:tint="@color/colorWhite" />
+            android:src="@drawable/logo_1" />
     </FrameLayout>
 
     <com.example.mrfarmergrocer.utils.MFGTextViewBold
