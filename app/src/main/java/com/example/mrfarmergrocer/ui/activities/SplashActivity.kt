@@ -10,20 +10,19 @@ import android.view.WindowManager
 import com.example.mrfarmergrocer.ui.activities.MainActivity
 import com.example.mrfarmergrocer.R
 
+@Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        @Suppress("DEPRECATION")
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
+
+
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
-        }
+
 
         @Suppress("DEPRECATION")
         Handler().postDelayed(
@@ -35,6 +34,6 @@ class SplashActivity : AppCompatActivity() {
             2500
         ) // Here we pass the delay time in milliSeconds after which the splash activity will disappear.
 
-        // END
+
     }
 }

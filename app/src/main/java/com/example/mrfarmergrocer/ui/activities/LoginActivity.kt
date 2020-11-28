@@ -14,22 +14,21 @@ import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.firestore.FirestoreClass
 import com.example.mrfarmergrocer.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.example.mrfarmergrocer.utils.Constants
 import kotlinx.android.synthetic.main.activity_login.*
 
+@Suppress("DEPRECATION")
 class LoginActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        @Suppress("DEPRECATION")
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
+        // This is used to hide the status bar and make the login screen as a full screen activity.
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
-        }
+
 
         // Click event assigned to Forgot Password text.
         tv_forgot_password.setOnClickListener(this)
@@ -50,7 +49,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         Log.i("Email: ", user.email)
 
         // Redirect the user to Main Screen after log in.
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        if (user.profileCompleted == 0) {
+            // If the user profile is incomplete then launch the UserProfileActivity.
+            val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
+            startActivity(intent)
+        } else {
+            // Redirect the user to Main Screen after log in.
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        }        
         finish()
     }
 
@@ -118,8 +125,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 .addOnCompleteListener { task ->
 
                     // Hide the progress dialog
-                    hideProgressDialog()
-
+                    //hideProgressDialog()
                     if (task.isSuccessful) {
 
                         FirestoreClass().getUserDetails(this@LoginActivity)

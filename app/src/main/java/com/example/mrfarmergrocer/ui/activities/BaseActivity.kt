@@ -10,6 +10,9 @@ import kotlinx.android.synthetic.main.dialog_progress.*
 
 open class BaseActivity : AppCompatActivity() {
 
+    /**
+     * This is a progress dialog instance which we will initialize later on.
+     */
     private lateinit var mProgressDialog: Dialog
 
     /**
@@ -54,6 +57,9 @@ open class BaseActivity : AppCompatActivity() {
         mProgressDialog.show()
     }
 
+    /**
+     * This function is used to dismiss the progress dialog if it is visible to user.
+     */
     fun hideProgressDialog() {
         mProgressDialog.dismiss()
     }
