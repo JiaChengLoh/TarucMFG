@@ -167,8 +167,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                         // The uri of selected image from phone storage.
                         mSelectedImageFileUri = data.data!!
 
+
                         GlideLoader(this@UserProfileActivity).loadUserPicture(
-                            selectedImageFileUri,
+                            mSelectedImageFileUri!!,
+
                             iv_user_photo
                         )
                     } catch (e: IOException) {
@@ -271,11 +273,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         finish()
     }
 
-    /**
-     * A function to notify the success result of image upload to the Cloud Storage.
-     *
-     * @param imageURL After successful upload the Firebase Cloud returns the URL.
-     */
+
     fun imageUploadSuccess(imageURL: String) {
 
         mUserProfileImageURL = imageURL

@@ -36,7 +36,7 @@ object Constants {
 
     const val COMPLETE_PROFILE: String = "profileCompleted"
 
-    const val USER_PROFILE_IMAGE:String = "User_Profile_Image
+    const val USER_PROFILE_IMAGE:String = "User_Profile_Image"
     /**
      * A function for user profile image selection from phone storage.
      */
