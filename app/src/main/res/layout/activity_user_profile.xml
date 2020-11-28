@@ -209,7 +209,7 @@
                     android:layout_marginLeft="@dimen/profile_radio_button_marginLeftEnd" />
             </RadioGroup>
 
-            <com.example.mrfarmergrocer.utils.MFGRadioButton
+            <com.example.mrfarmergrocer.utils.MFGButton
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,8 +228,10 @@
                 android:textSize="@dimen/btn_textSize"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rg_gender" />
+                app:layout_constraintTop_toBottomOf="@id/rg_gender"
+                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

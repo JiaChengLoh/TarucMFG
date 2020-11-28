@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -25,6 +26,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     // Instance of User data model class. We will initialize it later on.
     private lateinit var mUserDetails: User
 
+    // Add a global variable for URI of a selected image from phone storage.
+    private var mSelectedImageFileUri: Uri? = null
+
+    private var mUserProfileImageURL: String = ""
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -62,9 +67,9 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         btn_save.setOnClickListener(this@UserProfileActivity)
     }
 
-    override fun onClick(v: View?) {
-        if (v != null) {
-            when (v.id) {
+    override fun onClick(view: View?) {
+        if (view != null) {
+            when (view.id) {
 
                 R.id.iv_user_photo -> {
 
@@ -91,42 +96,20 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
                     if (validateUserProfileDetails()) {
 
-                        // TODO Step 4: Create a HashMap of user details to be updated in the database and add the values init.
-                        // START
-                        val userHashMap = HashMap<String, Any>()
-
-                        // Here the field which are not editable needs no update. So, we will update user Mobile Number and Gender for now.
-
-                        // Here we get the text from editText and trim the space
-                        val mobileNumber = et_mobile_number.text.toString().trim { it <= ' ' }
-
-                        val gender = if (rb_male.isChecked) {
-                            Constants.MALE
-                        } else {
-                            Constants.FEMALE
-                        }
-
-                        if (mobileNumber.isNotEmpty()) {
-                            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
-                        }
-
-                        userHashMap[Constants.GENDER] = gender
-                        // END
-
-
-                        // TODO Step 6: Remove the message and call the function to update user details.
-                        // START
-                        /*showErrorSnackBar("Your details are valid. You can update them.", false)*/
 
                         // Show the progress dialog.
                         showProgressDialog(resources.getString(R.string.please_wait))
 
-                        // call the registerUser function of FireStore class to make an entry in the database.
-                        FirestoreClass().updateUserProfileData(
-                            this@UserProfileActivity,
-                            userHashMap
-                        )
-                        // END
+                        if (mSelectedImageFileUri != null) {
+                            // call the registerUser function of FireStore class to make an entry in the database.
+                            FirestoreClass().uploadImageToCloudStorage(
+                                this@UserProfileActivity,
+                                mSelectedImageFileUri
+                            )
+                        } else {
+
+                            updateUserProfileDetails()
+                        }
                     }
                 }
             }
@@ -182,7 +165,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 if (data != null) {
                     try {
                         // The uri of selected image from phone storage.
-                        val selectedImageFileUri = data.data!!
+                        mSelectedImageFileUri = data.data!!
 
                         GlideLoader(this@UserProfileActivity).loadUserPicture(
                             selectedImageFileUri,
@@ -226,8 +209,48 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    // TODO Step 7: Create a function to notify the success result and proceed further accordingly.
-    // START
+    /**
+     * A function to update user profile details to the firestore.
+     */
+    private fun updateUserProfileDetails() {
+
+        val userHashMap = HashMap<String, Any>()
+
+        // Here the field which are not editable needs no update. So, we will update user Mobile Number and Gender for now.
+
+        // Here we get the text from editText and trim the space
+        val mobileNumber = et_mobile_number.text.toString().trim { it <= ' ' }
+
+        val gender = if (rb_male.isChecked) {
+            Constants.MALE
+        } else {
+            Constants.FEMALE
+        }
+
+        if (mUserProfileImageURL.isNotEmpty()) {
+            userHashMap[Constants.IMAGE] = mUserProfileImageURL
+        }
+
+        if (mobileNumber.isNotEmpty()) {
+            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+        }
+
+        userHashMap[Constants.GENDER] = gender
+
+        // TODO Step 2: Update the field value that the profile is completed.
+        // START
+        // 0: User profile is incomplete.
+        // 1: User profile is completed.
+        userHashMap[Constants.COMPLETE_PROFILE] = 1
+        // END
+
+        // call the registerUser function of FireStore class to make an entry in the database.
+        FirestoreClass().updateUserProfileData(
+            this@UserProfileActivity,
+            userHashMap
+        )
+    }
+
     /**
      * A function to notify the success result and proceed further accordingly after updating the user details.
      */
@@ -247,5 +270,16 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         startActivity(Intent(this@UserProfileActivity, MainActivity::class.java))
         finish()
     }
-    // END
+
+    /**
+     * A function to notify the success result of image upload to the Cloud Storage.
+     *
+     * @param imageURL After successful upload the Firebase Cloud returns the URL.
+     */
+    fun imageUploadSuccess(imageURL: String) {
+
+        mUserProfileImageURL = imageURL
+
+        updateUserProfileDetails()
+    }
 }

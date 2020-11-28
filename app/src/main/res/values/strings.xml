@@ -50,9 +50,8 @@
 
     <string name="err_msg_enter_mobile_number">Please enter mobile number.</string>
 
-    <!--TODO Step 8: Add the string resources in the strings.xml file-->
-    <!--START-->
+
     <string name="msg_profile_update_success">Your profile is updated successfully.</string>
-    <!--END-->
+
 
 </resources>
