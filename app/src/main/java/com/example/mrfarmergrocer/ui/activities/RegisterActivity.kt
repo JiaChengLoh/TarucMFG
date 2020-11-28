@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
 import com.example.mrfarmergrocer.R
 
 class RegisterActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class RegisterActivity : AppCompatActivity() {
             )
         }
 
+        val tv_login: TextView = findViewById(R.id.tv_login)
         tv_login.setOnClickListener {
 
             // Launch the register screen when the user clicks on the text.
