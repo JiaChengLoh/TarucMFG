@@ -5,11 +5,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
 import com.example.mrfarmergrocer.R
+import com.example.mrfarmergrocer.firestore.FirestoreClass
+import com.example.mrfarmergrocer.models.User
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -34,6 +37,21 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         btn_login.setOnClickListener(this)
         // Click event assigned to Register text.
         tv_register.setOnClickListener(this)
+    }
+
+    fun userLoggedInSuccess(user: User) {
+
+        // Hide the progress dialog.
+        hideProgressDialog()
+
+        // Print the user details in the log as of now.
+        Log.i("First Name: ", user.firstName)
+        Log.i("Last Name: ", user.lastName)
+        Log.i("Email: ", user.email)
+
+        // Redirect the user to Main Screen after log in.
+        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        finish()
     }
 
     // In Login screen the clickable components are Login Button, ForgotPassword text and Register Text.
@@ -104,8 +122,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
                     if (task.isSuccessful) {
 
-                        showErrorSnackBar("You are logged in successfully.", false)
+                        FirestoreClass().getUserDetails(this@LoginActivity)
                     } else {
+                        // Hide the progress dialog
+                        hideProgressDialog()
                         showErrorSnackBar(task.exception!!.message.toString(), true)
                     }
                 }
