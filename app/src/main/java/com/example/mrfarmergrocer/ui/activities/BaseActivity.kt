@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.dialog_progress.*
 
 open class BaseActivity : AppCompatActivity() {
 
-    private var doubleBackToExitPressedOnce = false
+    var backPressedDuration: Long = 0
     /**
      * This is a progress dialog instance which we will initialize later on.
      */
@@ -67,22 +67,17 @@ open class BaseActivity : AppCompatActivity() {
         mProgressDialog.dismiss()
     }
 
-    fun doubleBackToExit() {
-
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
-            return
+    fun doubleBackToExit(){
+        if (backPressedDuration + 1000 > System.currentTimeMillis()){
+            finishAffinity() // Close all activites
+            System.exit(0)  // Releasing resources
         }
+        else{
+            Toast.makeText(getBaseContext(),
+                "Press back again to exit", Toast.LENGTH_SHORT)
+                .show()
+        }
+        backPressedDuration = System.currentTimeMillis()
 
-        this.doubleBackToExitPressedOnce = true
-
-        Toast.makeText(
-            this,
-            resources.getString(R.string.please_click_back_again_to_exit),
-            Toast.LENGTH_SHORT
-        ).show()
-
-        @Suppress("DEPRECATION")
-        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 }
