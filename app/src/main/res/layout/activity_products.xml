@@ -31,15 +31,9 @@
             tools:ignore="VectorDrawableCompat" />
     </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/app_gradient_color_background"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu" />
+    <include
+        android:id="@+id/bottom_nav"
+        layout="@layout/bottom_nav_view"
+        android:visibility="visible" />
 
 </RelativeLayout>
