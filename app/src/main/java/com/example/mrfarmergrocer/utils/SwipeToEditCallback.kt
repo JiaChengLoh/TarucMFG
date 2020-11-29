@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mrfarmergrocer.R
 
-// TODO Step 1: Add the class to add the feature for Swipe right to edit the address.
-// START
+// Add the class to add the feature for Swipe right to edit the address.
+
 // For detail explanation of this class you can look at below link.
 // https://medium.com/@kitek/recyclerview-swipe-to-delete-easier-than-you-thought-cff67ff5e5f6
 /**

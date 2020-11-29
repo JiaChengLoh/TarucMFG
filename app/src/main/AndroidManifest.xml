@@ -14,7 +14,8 @@
         <activity android:name=".ui.activities.ProductDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        < android:name=".ui.activities.CheckoutActivity"
+        <activity
+            android:name=".ui.activities.CheckoutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
@@ -68,9 +69,9 @@
             android:name=".ui.activities.UserProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.activities.CartListActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activities.CartListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

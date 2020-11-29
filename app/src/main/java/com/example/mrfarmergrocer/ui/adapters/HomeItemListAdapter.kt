@@ -16,6 +16,8 @@ open class HomeItemsListAdapter(
         private var list: ArrayList<Product>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var onClickListener: OnClickListener? = null
+
     /**
      * Inflates the item views which is designed in xml layout file
      *
@@ -54,6 +56,12 @@ open class HomeItemsListAdapter(
             )
             holder.itemView.tv_home_item_title.text = model.title
             holder.itemView.tv_home_item_price.text = "${model.price}"
+
+            holder.itemView.setOnClickListener {
+                if (onClickListener != null) {
+                    onClickListener!!.onClick(position, model)
+                }
+            }
         }
     }
 
@@ -62,6 +70,23 @@ open class HomeItemsListAdapter(
      */
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    /**
+     * A function for OnClickListener where the Interface is the expected parameter and assigned to the global variable.
+     *
+     * @param onClickListener
+     */
+    fun setOnClickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
+    }
+
+    /**
+     * An interface for onclick items.
+     */
+    interface OnClickListener {
+
+        fun onClick(position: Int, product: Product)
     }
 
     /**
