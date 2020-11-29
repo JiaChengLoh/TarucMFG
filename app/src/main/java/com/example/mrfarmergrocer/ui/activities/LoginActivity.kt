@@ -1,6 +1,8 @@
 package com.example.mrfarmergrocer.ui.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +21,10 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 @Suppress("DEPRECATION")
 class LoginActivity : BaseActivity(), View.OnClickListener {
+
+    lateinit var sharedPreferences: SharedPreferences
+    var isRemember = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -29,6 +35,27 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
 
+        sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+
+        isRemember = sharedPreferences.getBoolean("CHECKBOX", false)
+
+        if(isRemember) {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_login.setOnClickListener{
+            val email: String = et_email.text.toString()
+            val password: String = et_password.text.toString()
+            val checked: Boolean = bt_remember.isChecked
+
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("Email", email)
+            editor.putString("Password", password)
+            editor.putBoolean("CHECKBOX", checked)
+            editor.apply()
+        }
 
         // Click event assigned to Forgot Password text.
         tv_forgot_password.setOnClickListener(this)

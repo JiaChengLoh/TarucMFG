@@ -93,6 +93,18 @@
             tools:text="123456" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/bt_remember"
+        android:layout_width="169dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:foregroundGravity="center"
+        android:gravity="center|left"
+        android:text="@string/remember_me"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password" />
+
     <com.example.mrfarmergrocer.utils.MFGTextView
         android:id="@+id/tv_forgot_password"
         android:layout_width="wrap_content"
