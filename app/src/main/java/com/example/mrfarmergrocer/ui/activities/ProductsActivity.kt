@@ -15,6 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.bottom_nav_view.*
+import com.example.mrfarmergrocer.utils.Constants
+
 
 class ProductsActivity : BaseActivity() {
 
@@ -44,44 +46,7 @@ class ProductsActivity : BaseActivity() {
             false
         })
 
-        fun successProductsListFromFireStore(productsList: ArrayList<Product>) {
 
-            // Hide Progress dialog.
-            hideProgressDialog()
-
-            for(i in productsList){
-                Log.i("ProductName", i.title)
-            }
-
-            /*
-            if (productsList.size > 0) {
-                rv_my_product_items.visibility = View.VISIBLE
-                tv_no_products_found.visibility = View.GONE
-
-                rv_my_product_items.layoutManager = LinearLayoutManager(activity)
-                rv_my_product_items.setHasFixedSize(true)
-
-                val adapterProducts =
-                        MyProductsListAdapter(requireActivity(), productsList, this@ProductsFragment)
-                rv_my_product_items.adapter = adapterProducts
-            } else {
-                rv_my_product_items.visibility = View.GONE
-                tv_no_products_found.visibility = View.VISIBLE
-            }
-            */
-
-        }
-
-        fun getProductListFromFireStore(){
-            showProgressDialog(resources.getString(R.string.please_wait))
-            FirestoreClass().getProductsList(this)
-
-        }
-
-        fun onResume(){
-            super.onResume()
-            getProductListFromFireStore()
-        }
 
 
         val cart_view = findViewById(R.id.imageView) as ImageView
@@ -92,6 +57,43 @@ class ProductsActivity : BaseActivity() {
         }
     }
 
+    fun successProductsListFromFireStore(productsList: ArrayList<Product>) {
 
+        // Hide Progress dialog.
+        hideProgressDialog()
+
+        for(i in productsList){
+            Log.i("Price", i.price)
+        }
+
+        /*
+        if (productsList.size > 0) {
+            rv_my_product_items.visibility = View.VISIBLE
+            tv_no_products_found.visibility = View.GONE
+
+            rv_my_product_items.layoutManager = LinearLayoutManager(activity)
+            rv_my_product_items.setHasFixedSize(true)
+
+            val adapterProducts =
+                    MyProductsListAdapter(requireActivity(), productsList, this@ProductsFragment)
+            rv_my_product_items.adapter = adapterProducts
+        } else {
+            rv_my_product_items.visibility = View.GONE
+            tv_no_products_found.visibility = View.VISIBLE
+        }
+        */
+
+    }
+
+    private fun getProductListFromFireStore(){
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getProductsList(this)
+
+    }
+
+    override fun onResume(){
+        super.onResume()
+        getProductListFromFireStore()
+    }
 
 }
