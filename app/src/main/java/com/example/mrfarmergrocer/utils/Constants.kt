@@ -36,6 +36,7 @@ object Constants {
     const val IMAGE: String = "image"
 
 
+    const val USER_ID: String = "user_id"
     const val COMPLETE_PROFILE: String = "profileCompleted"
 
     const val USER_PROFILE_IMAGE:String = "User_Profile_Image"

@@ -43,6 +43,7 @@
     <dimen name="gender_radio_button_stroke_width">1dp</dimen>
     <dimen name="cart_image_margin">5dp</dimen>
 
+    <dimen name="no_data_found_textSize">20sp</dimen>
 
 
 </resources>

@@ -58,4 +58,7 @@
 
 
     <string name="please_click_back_again_to_exit">Please click back again to exit.</string>
+
+    <string name="no_products_added_yet">No products added yet</string>
+
 </resources>
