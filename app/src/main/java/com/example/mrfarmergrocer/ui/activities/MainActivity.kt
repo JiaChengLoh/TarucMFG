@@ -2,12 +2,9 @@ package com.example.mrfarmergrocer.ui.activities
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.firestore.FirestoreClass
@@ -80,6 +77,7 @@ class MainActivity : BaseActivity() {
 
             val adapter = HomeItemsListAdapter(this, homeItemsList)
             rv_home_items.adapter = adapter
+
         } else {
             rv_home_items.visibility = View.GONE
             tv_no_home_items_found.visibility = View.VISIBLE

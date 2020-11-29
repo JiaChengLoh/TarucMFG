@@ -92,4 +92,8 @@
     <string name="msg_your_address_updated_successfully">Your address was updated successfully.</string>
 
     <string name="err_your_address_deleted_successfully">Your address was deleted successfully.</string>
+
+    <string name="title_product_details">PRODUCT DETAILS</string>
+    <string name="lbl_product_description">Product Description</string>
+    <string name="lbl_product_details_stock_quantity">Stock Quantity</string>
 </resources>

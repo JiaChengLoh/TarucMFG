@@ -53,7 +53,7 @@ open class HomeItemsListAdapter(
                     holder.itemView.iv_home_item_image
             )
             holder.itemView.tv_home_item_title.text = model.title
-            holder.itemView.tv_home_item_price.text = "$${model.price}"
+            holder.itemView.tv_home_item_price.text = "${model.price}"
         }
     }
 
@@ -69,3 +69,4 @@ open class HomeItemsListAdapter(
      */
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }
+

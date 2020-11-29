@@ -2,7 +2,6 @@ package com.example.mrfarmergrocer.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +9,8 @@ import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.firestore.FirestoreClass
 import com.example.mrfarmergrocer.models.Product
 import com.example.mrfarmergrocer.adapter.MyProductsListAdapter
+import com.example.mrfarmergrocer.ui.adapters.HomeItemsListAdapter
+import com.example.mrfarmergrocer.utils.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.bottom_nav_view.*
@@ -60,9 +61,6 @@ class ProductsActivity : BaseActivity() {
         // Hide Progress dialog.
         hideProgressDialog()
 
-
-
-
         if (productsList.size > 0) {
             rv_my_product_items.visibility = View.VISIBLE
             tv_no_products_found.visibility = View.GONE
@@ -73,14 +71,12 @@ class ProductsActivity : BaseActivity() {
             val adapterProducts =
                     MyProductsListAdapter(this, productsList, this@ProductsActivity)
             rv_my_product_items.adapter = adapterProducts
+
         } else {
             rv_my_product_items.visibility = View.GONE
             tv_no_products_found.visibility = View.VISIBLE
         }
-
-
     }
-
 
     private fun getProductListFromFireStore(){
         showProgressDialog(resources.getString(R.string.please_wait))
@@ -92,5 +88,4 @@ class ProductsActivity : BaseActivity() {
         super.onResume()
         getProductListFromFireStore()
     }
-
 }
