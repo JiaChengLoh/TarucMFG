@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.example.mrfarmergrocer.models.Address
 import com.example.mrfarmergrocer.models.Product
 import com.example.mrfarmergrocer.models.User
 import com.example.mrfarmergrocer.utils.Constants
@@ -247,5 +248,30 @@ class FirestoreClass {
                     }
                     Log.e("Get Product List", "Error while getting product list.", e)
                 }
+    }
+
+    fun addAddress(activity: AddEditAddressActivity, addressInfo: Address) {
+
+        // Collection name address.
+        mFireStore.collection(Constants.ADDRESSES)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // TODO Step 5: Notify the success result to the base class.
+                // START
+                // Here call a function of base activity for transferring the result to it.
+                activity.addUpdateAddressSuccess()
+                // END
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while adding the address.",
+                    e
+                )
+            }
     }
 }

@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             finish()
         }
 
-        btn_login.setOnClickListener{
+        bt_remember.setOnClickListener{
             val email: String = et_email.text.toString()
             val password: String = et_password.text.toString()
             val checked: Boolean = bt_remember.isChecked
@@ -55,6 +55,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             editor.putString("Password", password)
             editor.putBoolean("CHECKBOX", checked)
             editor.apply()
+
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // Click event assigned to Forgot Password text.
@@ -164,7 +168,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 }
         }
     }
-
     override fun onBackPressed() {
         doubleBackToExit()
     }

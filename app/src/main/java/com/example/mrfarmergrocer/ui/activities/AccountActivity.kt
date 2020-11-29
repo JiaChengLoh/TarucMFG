@@ -6,12 +6,10 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mrfarmergrocer.R
+import com.example.mrfarmergrocer.utils.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.et_email
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.bottom_nav_view.*
 
 class AccountActivity : AppCompatActivity() {
@@ -22,10 +20,10 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
 
+        // logout
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
         btn_logout.setOnClickListener {
-
             val editor: SharedPreferences.Editor = preferences.edit()
             editor.clear()
             editor.apply()
@@ -56,5 +54,7 @@ class AccountActivity : AppCompatActivity() {
             }
             false
         })
+
+
     }
 }
