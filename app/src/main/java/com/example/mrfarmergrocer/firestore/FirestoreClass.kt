@@ -274,4 +274,60 @@ class FirestoreClass {
                 )
             }
     }
+
+    fun getAddressesList(activity: AddressListActivity) {
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.ADDRESSES)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                // Here we get the list of boards in the form of documents.
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+                // Here we have created a new instance for address ArrayList.
+                val addressList: ArrayList<Address> = ArrayList()
+
+                // A for loop as per the list of documents to convert them into Boards ArrayList.
+                for (i in document.documents) {
+
+                    val address = i.toObject(Address::class.java)!!
+                    address.id = i.id
+
+                    addressList.add(address)
+                }
+
+                // TODO Step 4: Notify the success result to the base class.
+                // START
+                activity.successAddressListFromFirestore(addressList)
+                // END
+            }
+            .addOnFailureListener { e ->
+                // Here call a function of base activity for transferring the result to it.
+
+                activity.hideProgressDialog()
+
+                Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
+            }
+
+    }
+
+    fun updateAddress(activity: AddEditAddressActivity, addressInfo: Address, addressId: String) {
+
+        mFireStore.collection(Constants.ADDRESSES)
+                .document(addressId)
+                // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+                .set(addressInfo, SetOptions.merge())
+                .addOnSuccessListener {
+
+                    // Here call a function of base activity for transferring the result to it.
+                    activity.addUpdateAddressSuccess()
+                }
+                .addOnFailureListener { e ->
+                    activity.hideProgressDialog()
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while updating the Address.",
+                            e
+                    )
+                }
+    }
 }
