@@ -9,7 +9,7 @@ import com.example.mrfarmergrocer.firestore.FirestoreClass
 import com.example.mrfarmergrocer.models.Address
 import com.example.mrfarmergrocer.utils.Constants
 import kotlinx.android.synthetic.main.activity_add_edit_address.*
-import kotlinx.android.synthetic.main.activity_address_list.*
+
 
 class AddEditAddressActivity : BaseActivity() {
 

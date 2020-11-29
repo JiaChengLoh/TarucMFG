@@ -81,6 +81,7 @@ class ProductsActivity : BaseActivity() {
 
     }
 
+
     private fun getProductListFromFireStore(){
         showProgressDialog(resources.getString(R.string.please_wait))
         FirestoreClass().getProductsList(this)
