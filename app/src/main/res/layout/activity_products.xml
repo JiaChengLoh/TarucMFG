@@ -11,13 +11,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Products"
-            android:textSize="36sp" />
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Here"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="56dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:layout_gravity="end"
+            android:paddingRight="20dp"
+            app:srcCompat="@drawable/ic_vector_cart"
+            tools:ignore="VectorDrawableCompat" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
