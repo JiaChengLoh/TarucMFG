@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.firestore.FirestoreClass
 import com.example.mrfarmergrocer.models.Address
 import com.example.mrfarmergrocer.ui.adapters.AddressListAdapter
+import com.example.mrfarmergrocer.utils.SwipeToDeleteCallback
 import com.example.mrfarmergrocer.utils.SwipeToEditCallback
 import kotlinx.android.synthetic.main.activity_address_list.*
 
@@ -39,6 +41,19 @@ class AddressListActivity : BaseActivity() {
         getAddressList()
     }
 
+    fun deleteAddressSuccess() {
+
+        // Hide progress dialog.
+        hideProgressDialog()
+
+        Toast.makeText(
+                this@AddressListActivity,
+                resources.getString(R.string.err_your_address_deleted_successfully),
+                Toast.LENGTH_SHORT
+        ).show()
+
+        getAddressList()
+    }
     fun successAddressListFromFirestore(addressList: ArrayList<Address>) {
 
         // Hide the progress dialog
@@ -67,6 +82,21 @@ class AddressListActivity : BaseActivity() {
             }
             val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
             editItemTouchHelper.attachToRecyclerView(rv_address_list)
+
+            val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+                    // Show the progress dialog.
+                    showProgressDialog(resources.getString(R.string.please_wait))
+
+                    FirestoreClass().deleteAddress(
+                            this@AddressListActivity,
+                            addressList[viewHolder.adapterPosition].id
+                    )
+                }
+            }
+            val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
+            deleteItemTouchHelper.attachToRecyclerView(rv_address_list)
 
         } else {
             rv_address_list.visibility = View.GONE

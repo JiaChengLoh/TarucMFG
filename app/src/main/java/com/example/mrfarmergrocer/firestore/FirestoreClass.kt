@@ -31,24 +31,24 @@ class FirestoreClass {
 
         // The "users" is collection name. If the collection is already created then it will not create the same one again.
         mFireStore.collection(Constants.USERS)
-            // Document ID for users fields. Here the document it is the User ID.
-            .document(userInfo.id)
-            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge later on instead of replacing the fields.
-            .set(userInfo, SetOptions.merge())
-            .addOnSuccessListener {
+                // Document ID for users fields. Here the document it is the User ID.
+                .document(userInfo.id)
+                // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge later on instead of replacing the fields.
+                .set(userInfo, SetOptions.merge())
+                .addOnSuccessListener {
 
-                // Here call a function of base activity for transferring the result to it.
-                activity.userRegistrationSuccess()
-            }
+                    // Here call a function of base activity for transferring the result to it.
+                    activity.userRegistrationSuccess()
+                }
 
-            .addOnFailureListener { e ->
-                activity.hideProgressDialog()
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while registering the user.",
-                    e
-                )
-            }
+                .addOnFailureListener { e ->
+                    activity.hideProgressDialog()
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while registering the user.",
+                            e
+                    )
+                }
     }
 
     fun getCurrentUserID(): String {
@@ -79,16 +79,16 @@ class FirestoreClass {
                     val user = document.toObject(User::class.java)!!
 
                     val sharedPreferences =
-                        activity.getSharedPreferences(
-                            Constants.MRFARMERGROCER_PREFERENCES,
-                            Context.MODE_PRIVATE
-                        )
+                            activity.getSharedPreferences(
+                                    Constants.MRFARMERGROCER_PREFERENCES,
+                                    Context.MODE_PRIVATE
+                            )
 
                     // Create an instance of the editor which is help us to edit the SharedPreference.
                     val editor: SharedPreferences.Editor = sharedPreferences.edit()
                     editor.putString(
-                        Constants.LOGGED_IN_USERNAME,
-                        "${user.firstName} ${user.lastName}"
+                            Constants.LOGGED_IN_USERNAME,
+                            "${user.firstName} ${user.lastName}"
                     )
                     editor.apply()
 
@@ -161,50 +161,50 @@ class FirestoreClass {
 
         //getting the storage reference
         val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
-            Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "."
-                    + Constants.getFileExtension(
-                activity,
-                imageFileURI
-            )
+                Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "."
+                        + Constants.getFileExtension(
+                        activity,
+                        imageFileURI
+                )
         )
 
         //adding the file to reference
         sRef.putFile(imageFileURI!!)
-            .addOnSuccessListener { taskSnapshot ->
-                // The image upload is success
-                Log.e(
-                    "Firebase Image URL",
-                    taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
-                )
+                .addOnSuccessListener { taskSnapshot ->
+                    // The image upload is success
+                    Log.e(
+                            "Firebase Image URL",
+                            taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+                    )
 
-                // Get the downloadable url from the task snapshot
-                taskSnapshot.metadata!!.reference!!.downloadUrl
-                    .addOnSuccessListener { uri ->
-                        Log.e("Downloadable Image URL", uri.toString())
+                    // Get the downloadable url from the task snapshot
+                    taskSnapshot.metadata!!.reference!!.downloadUrl
+                            .addOnSuccessListener { uri ->
+                                Log.e("Downloadable Image URL", uri.toString())
 
-                        // Here call a function of base activity for transferring the result to it.
-                        when (activity) {
-                            is UserProfileActivity -> {
-                                activity.imageUploadSuccess(uri.toString())
+                                // Here call a function of base activity for transferring the result to it.
+                                when (activity) {
+                                    is UserProfileActivity -> {
+                                        activity.imageUploadSuccess(uri.toString())
+                                    }
+                                }
                             }
+                }
+                .addOnFailureListener { exception ->
+
+                    // Hide the progress dialog if there is any error. And print the error in log.
+                    when (activity) {
+                        is UserProfileActivity -> {
+                            activity.hideProgressDialog()
                         }
                     }
-            }
-            .addOnFailureListener { exception ->
 
-                // Hide the progress dialog if there is any error. And print the error in log.
-                when (activity) {
-                    is UserProfileActivity -> {
-                        activity.hideProgressDialog()
-                    }
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            exception.message,
+                            exception
+                    )
                 }
-
-                Log.e(
-                    activity.javaClass.simpleName,
-                    exception.message,
-                    exception
-                )
-            }
     }
 
 
@@ -254,59 +254,59 @@ class FirestoreClass {
 
         // Collection name address.
         mFireStore.collection(Constants.ADDRESSES)
-            .document()
-            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
-            .set(addressInfo, SetOptions.merge())
-            .addOnSuccessListener {
+                .document()
+                // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+                .set(addressInfo, SetOptions.merge())
+                .addOnSuccessListener {
 
-                // TODO Step 5: Notify the success result to the base class.
-                // START
-                // Here call a function of base activity for transferring the result to it.
-                activity.addUpdateAddressSuccess()
-                // END
-            }
-            .addOnFailureListener { e ->
-                activity.hideProgressDialog()
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while adding the address.",
-                    e
-                )
-            }
+                    // TODO Step 5: Notify the success result to the base class.
+                    // START
+                    // Here call a function of base activity for transferring the result to it.
+                    activity.addUpdateAddressSuccess()
+                    // END
+                }
+                .addOnFailureListener { e ->
+                    activity.hideProgressDialog()
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while adding the address.",
+                            e
+                    )
+                }
     }
 
     fun getAddressesList(activity: AddressListActivity) {
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.ADDRESSES)
-            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-                // Here we get the list of boards in the form of documents.
-                Log.e(activity.javaClass.simpleName, document.documents.toString())
-                // Here we have created a new instance for address ArrayList.
-                val addressList: ArrayList<Address> = ArrayList()
+                .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+                .get() // Will get the documents snapshots.
+                .addOnSuccessListener { document ->
+                    // Here we get the list of boards in the form of documents.
+                    Log.e(activity.javaClass.simpleName, document.documents.toString())
+                    // Here we have created a new instance for address ArrayList.
+                    val addressList: ArrayList<Address> = ArrayList()
 
-                // A for loop as per the list of documents to convert them into Boards ArrayList.
-                for (i in document.documents) {
+                    // A for loop as per the list of documents to convert them into Boards ArrayList.
+                    for (i in document.documents) {
 
-                    val address = i.toObject(Address::class.java)!!
-                    address.id = i.id
+                        val address = i.toObject(Address::class.java)!!
+                        address.id = i.id
 
-                    addressList.add(address)
+                        addressList.add(address)
+                    }
+
+                    // TODO Step 4: Notify the success result to the base class.
+                    // START
+                    activity.successAddressListFromFirestore(addressList)
+                    // END
                 }
+                .addOnFailureListener { e ->
+                    // Here call a function of base activity for transferring the result to it.
 
-                // TODO Step 4: Notify the success result to the base class.
-                // START
-                activity.successAddressListFromFirestore(addressList)
-                // END
-            }
-            .addOnFailureListener { e ->
-                // Here call a function of base activity for transferring the result to it.
+                    activity.hideProgressDialog()
 
-                activity.hideProgressDialog()
-
-                Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
-            }
+                    Log.e(activity.javaClass.simpleName, "Error while getting the address list.", e)
+                }
 
     }
 
@@ -358,6 +358,29 @@ class FirestoreClass {
                     // Hide the progress dialog if there is any error which getting the dashboard items list.
                     activity.hideProgressDialog()
                     Log.e(activity.javaClass.simpleName, "Error while getting dashboard items list.", e)
+                }
+    }
+
+    fun deleteAddress(activity: AddressListActivity, addressId: String) {
+
+        mFireStore.collection(Constants.ADDRESSES)
+                .document(addressId)
+                .delete()
+                .addOnSuccessListener {
+
+                    // TODO Step 8: Notify the success result.
+                    // START
+                    // Here call a function of base activity for transferring the result to it.
+                    activity.deleteAddressSuccess()
+                    // END
+                }
+                .addOnFailureListener { e ->
+                    activity.hideProgressDialog()
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "Error while deleting the address.",
+                            e
+                    )
                 }
     }
 }
