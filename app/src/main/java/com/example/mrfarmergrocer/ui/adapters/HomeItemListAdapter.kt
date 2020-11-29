@@ -68,5 +68,6 @@ open class HomeItemsListAdapter(
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
 }
 
