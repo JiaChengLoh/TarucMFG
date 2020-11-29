@@ -214,7 +214,6 @@ class FirestoreClass {
     fun getProductsList(activity: Activity) {
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.PRODUCTS)
-                .whereEqualTo(Constants.USER_ID, getCurrentUserID())
                 .get() // Will get the documents snapshots.
                 .addOnSuccessListener { document  ->
 

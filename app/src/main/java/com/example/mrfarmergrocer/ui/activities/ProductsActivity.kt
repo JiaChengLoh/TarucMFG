@@ -2,6 +2,7 @@ package com.example.mrfarmergrocer.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.bottom_nav_view.*
 
 
 class ProductsActivity : BaseActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +59,9 @@ class ProductsActivity : BaseActivity() {
 
         // Hide Progress dialog.
         hideProgressDialog()
+
+
+
 
         if (productsList.size > 0) {
             rv_my_product_items.visibility = View.VISIBLE
