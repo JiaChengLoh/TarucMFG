@@ -137,4 +137,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 }
         }
     }
+
+    override fun onBackPressed() {
+        doubleBackToExit()
+    }
 }

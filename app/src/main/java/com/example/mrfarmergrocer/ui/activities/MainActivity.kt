@@ -9,7 +9,7 @@ import com.example.mrfarmergrocer.utils.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,4 +44,9 @@ class MainActivity : AppCompatActivity() {
             false
         })
     }
+
+    override fun onBackPressed() {
+        doubleBackToExit()
+    }
+
 }
