@@ -21,6 +21,8 @@ class AddressListActivity : BaseActivity() {
     /**
      * This function is auto created by Android when the Activity Class is created.
      */
+
+    private var mSelectAddress: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
@@ -67,7 +69,7 @@ class AddressListActivity : BaseActivity() {
             rv_address_list.layoutManager = LinearLayoutManager(this@AddressListActivity)
             rv_address_list.setHasFixedSize(true)
 
-            val addressAdapter = AddressListAdapter(this@AddressListActivity, addressList)
+            val addressAdapter = AddressListAdapter(this@AddressListActivity, addressList, mSelectAddress)
             rv_address_list.adapter = addressAdapter
 
             val editSwipeHandler = object : SwipeToEditCallback(this) {

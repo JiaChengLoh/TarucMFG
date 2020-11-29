@@ -54,7 +54,7 @@ object Constants {
 
     const val EXTRA_ADDRESS_DETAILS: String = "AddressDetails"
 
-
+    const val EXTRA_SELECTED_ADDRESS: String = "extra_selected_address"
     /**
      * A function for user profile image selection from phone storage.
      */

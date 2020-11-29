@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.models.Address
 import com.example.mrfarmergrocer.ui.activities.AddEditAddressActivity
+import com.example.mrfarmergrocer.ui.activities.CheckoutActivity
 import com.example.mrfarmergrocer.utils.Constants
 import kotlinx.android.synthetic.main.item_address_layout.view.*
 
 open class AddressListAdapter(
         private val context: Context,
-        private var list: ArrayList<Address>
+        private var list: ArrayList<Address>,
+        private val selectAddress: Boolean
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /**
@@ -55,6 +57,15 @@ open class AddressListAdapter(
             holder.itemView.tv_address_type.text = model.type
             holder.itemView.tv_address_details.text = "${model.address}, ${model.zipCode}"
             holder.itemView.tv_address_mobile_number.text = model.mobileNumber
+
+            if (selectAddress) {
+                holder.itemView.setOnClickListener {
+
+                    val intent = Intent(context, CheckoutActivity::class.java)
+                    intent.putExtra(Constants.EXTRA_SELECTED_ADDRESS, model)
+                    context.startActivity(intent)
+                }
+            }
         }
     }
 
