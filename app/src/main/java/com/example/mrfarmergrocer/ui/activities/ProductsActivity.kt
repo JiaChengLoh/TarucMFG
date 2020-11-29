@@ -62,11 +62,11 @@ class ProductsActivity : BaseActivity() {
             rv_my_product_items.visibility = View.VISIBLE
             tv_no_products_found.visibility = View.GONE
 
-            rv_my_product_items.layoutManager = LinearLayoutManager(activity)
+            rv_my_product_items.layoutManager = LinearLayoutManager(this)
             rv_my_product_items.setHasFixedSize(true)
 
             val adapterProducts =
-                    MyProductsListAdapter(RequireActivity(), productsList, this@ProductsActivity)
+                    MyProductsListAdapter(this, productsList, this@ProductsActivity)
             rv_my_product_items.adapter = adapterProducts
         } else {
             rv_my_product_items.visibility = View.GONE
