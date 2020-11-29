@@ -2,6 +2,7 @@ package com.example.mrfarmergrocer.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mrfarmergrocer.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,5 +36,15 @@ class ProductsActivity : AppCompatActivity() {
             }
             false
         })
+
+        val cart_view = findViewById(R.id.imageView) as ImageView
+
+        cart_view.setOnClickListener{
+            startActivity(Intent(this@ProductsActivity, CartListActivity::class.java))
+            overridePendingTransition(0,0)
+        }
     }
+
+
+
 }

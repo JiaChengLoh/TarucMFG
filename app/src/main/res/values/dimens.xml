@@ -41,6 +41,8 @@
     <dimen name="profile_radio_button_marginLeftEnd">3dp</dimen>
     <dimen name="gender_radio_button_radius">5dp</dimen>
     <dimen name="gender_radio_button_stroke_width">1dp</dimen>
+    <dimen name="cart_image_margin">5dp</dimen>
+
 
 
 </resources>
