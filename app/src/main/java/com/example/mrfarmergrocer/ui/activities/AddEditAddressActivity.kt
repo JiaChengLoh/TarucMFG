@@ -164,8 +164,6 @@ class AddEditAddressActivity : BaseActivity() {
                 }
             }
 
-            // TODO Step 7: Prepare address info in data model class.
-            // START
             val addressModel = Address(
                 FirestoreClass().getCurrentUserID(),
                 fullName,

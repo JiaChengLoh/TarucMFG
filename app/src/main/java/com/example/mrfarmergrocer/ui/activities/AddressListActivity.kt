@@ -38,11 +38,6 @@ class AddressListActivity : BaseActivity() {
         getAddressList()
     }
 
-    override fun onResume() {
-        super.onResume()
-        getAddressList()
-    }
-
     fun deleteAddressSuccess() {
 
         // Hide progress dialog.

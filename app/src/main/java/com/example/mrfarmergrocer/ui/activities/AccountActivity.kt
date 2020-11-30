@@ -6,8 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mrfarmergrocer.R
-import com.example.mrfarmergrocer.utils.Constants
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.bottom_nav_view.*
@@ -23,6 +21,12 @@ class AccountActivity : AppCompatActivity() {
         // logout
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
+        btn_address.setOnClickListener {
+            val intent = Intent(this@AccountActivity, AddressListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         btn_logout.setOnClickListener {
             val editor: SharedPreferences.Editor = preferences.edit()
             editor.clear()
@@ -32,29 +36,5 @@ class AccountActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-        bottom_nav_view.selectedItemId = R.id.nav_account
-
-        bottom_nav_view.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this@AccountActivity, MainActivity::class.java))
-                    overridePendingTransition(0,0)
-                }
-                R.id.nav_products -> {
-                    startActivity(Intent(this@AccountActivity, ProductsActivity::class.java))
-                    overridePendingTransition(0,0)
-                }
-                R.id.nav_orders -> {
-                    startActivity(Intent(this@AccountActivity, OrdersActivity::class.java))
-                    overridePendingTransition(0,0)
-                }
-                R.id.nav_account -> {
-                }
-            }
-            false
-        })
-
-
     }
 }
