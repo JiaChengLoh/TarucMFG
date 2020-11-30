@@ -21,7 +21,6 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
     // A variable for user details which will be initialized later on.
     private lateinit var mUserDetails: User
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)

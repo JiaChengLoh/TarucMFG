@@ -1,12 +1,15 @@
 package com.example.mrfarmergrocer.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.models.Order
+import com.example.mrfarmergrocer.ui.activities.OrderDetailsActivity
+import com.example.mrfarmergrocer.utils.Constants
 import com.example.mrfarmergrocer.utils.GlideLoader
 import kotlinx.android.synthetic.main.item_list_layout.view.*
 
@@ -55,7 +58,11 @@ open class OrdersListAdapter(
             holder.itemView.tv_item_name.text = model.title
             holder.itemView.tv_item_price.text = "RM${model.total_amount}"
 
-            holder.itemView.ib_delete_product.visibility = View.GONE
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, OrderDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_ORDER_DETAILS, model)
+                context.startActivity(intent)
+            }
         }
     }
 

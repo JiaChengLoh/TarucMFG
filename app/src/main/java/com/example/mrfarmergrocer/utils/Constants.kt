@@ -60,6 +60,8 @@ object Constants {
     const val EXTRA_SELECTED_ADDRESS: String = "extra_selected_address"
 
     const val STOCK_AMOUNT: String = "stock_amount"
+
+    const val EXTRA_ORDER_DETAILS: String = "extra_ORDER_DETAILS"
     /**
      * A function for user profile image selection from phone storage.
      */
