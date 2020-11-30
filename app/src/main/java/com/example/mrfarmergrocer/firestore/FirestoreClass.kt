@@ -5,8 +5,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import androidx.fragment.app.Fragment
 import com.example.mrfarmergrocer.models.*
+import com.example.mrfarmergrocer.models.Address
+import com.example.mrfarmergrocer.models.CartItem
+import com.example.mrfarmergrocer.models.Product
+import com.example.mrfarmergrocer.models.User
 import com.example.mrfarmergrocer.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -14,8 +17,6 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.example.mrfarmergrocer.ui.activities.*
-
-
 
 class FirestoreClass {
 
@@ -286,6 +287,7 @@ class FirestoreClass {
 
                         productsList.add(product)
                     }
+
                     when (activity) {
                         is CartListActivity -> {
                             activity.successProductsListFromFireStore(productsList)
@@ -293,10 +295,7 @@ class FirestoreClass {
                         is CheckoutActivity -> {
                             activity.successProductsListFromFireStore(productsList)
                         }
-
                     }
-
-
                 }
                 .addOnFailureListener { e ->
                     // Hide the progress dialog if there is any error based on the base class instance.
@@ -304,11 +303,11 @@ class FirestoreClass {
                         is CartListActivity -> {
                             activity.hideProgressDialog()
                         }
-
                         is CheckoutActivity -> {
                             activity.hideProgressDialog()
                         }
                     }
+
                     Log.e("Get Product List", "Error while getting all product list.", e)
                 }
     }
@@ -433,18 +432,12 @@ class FirestoreClass {
                     is CartListActivity -> {
                         activity.successCartItemsList(list)
                     }
-                    is CheckoutActivity -> {
-                        activity.successCartItemsList(list)
-                    }
                 }
             }
             .addOnFailureListener { e ->
                 // Hide the progress dialog if there is an error based on the activity instance.
                 when (activity) {
                     is CartListActivity -> {
-                        activity.hideProgressDialog()
-                    }
-                    is CheckoutActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -732,5 +725,74 @@ class FirestoreClass {
                     e
                 )
             }
+    }
+
+    fun updateAllDetails(activity: CheckoutActivity, cartList: ArrayList<CartItem>) {
+
+        val writeBatch = mFireStore.batch()
+
+        // Here we will update the product stock in the products collection based to cart quantity.
+        for (cartItem in cartList) {
+
+            val productHashMap = HashMap<String, Any>()
+
+            productHashMap[Constants.STOCK_AMOUNT] =
+                    (cartItem.stock_quantity.toInt() - cartItem.cart_quantity.toInt()).toString()
+
+            val documentReference = mFireStore.collection(Constants.PRODUCTS)
+                    .document(cartItem.product_id)
+
+            writeBatch.update(documentReference, productHashMap)
+        }
+
+        // Delete the list of cart items
+        for (cartItem in cartList) {
+
+            val documentReference = mFireStore.collection(Constants.CART_ITEMS)
+                    .document(cartItem.id)
+            writeBatch.delete(documentReference)
+        }
+
+        writeBatch.commit().addOnSuccessListener {
+
+            activity.allDetailsUpdatedSuccessfully()
+            // END
+
+        }.addOnFailureListener { e ->
+            // Here call a function of base activity for transferring the result to it.
+            activity.hideProgressDialog()
+
+            Log.e(activity.javaClass.simpleName, "Error while updating all the details after order placed.", e)
+        }
+    }
+
+    fun getMyOrdersList(activity: OrdersActivity) {
+        mFireStore.collection(Constants.ORDERS)
+                .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+                .get() // Will get the documents snapshots.
+                .addOnSuccessListener { document ->
+                    Log.e(activity.javaClass.simpleName, document.documents.toString())
+                    val list: ArrayList<Order> = ArrayList()
+
+                    for (i in document.documents) {
+
+                        val orderItem = i.toObject(Order::class.java)!!
+                        orderItem.id = i.id
+
+                        list.add(orderItem)
+                    }
+
+                    // TODO Step 7: Notify the success result to base class.
+                    // START
+                    activity.populateOrdersListInUI(list)
+                    // END
+                }
+                .addOnFailureListener { e ->
+                    // Here call a function of base activity for transferring the result to it.
+
+                    activity.hideProgressDialog()
+
+                    Log.e(activity.javaClass.simpleName, "Error while getting the orders list.", e)
+                }
     }
 }

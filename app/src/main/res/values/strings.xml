@@ -134,4 +134,6 @@
     <string name="no_cart_item_found">No item found in cart!</string>
     <string name="btn_lbl_checkout">Checkout</string>
     <string name="action_cart">My Cart</string>
+
+    <string name="no_orders_placed_yet">No orders placed yet!</string>
 </resources>

@@ -2,7 +2,6 @@ package com.example.mrfarmergrocer.ui.activities
 
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -146,15 +145,15 @@ class CheckoutActivity : BaseActivity() {
             }
         }
 
-        tv_checkout_sub_total.text = "$$mSubTotal"
+        tv_checkout_sub_total.text = "RM$mSubTotal"
 
-        tv_checkout_shipping_charge.text = "$10.0"
+        tv_checkout_shipping_charge.text = "RM10.0"
 
         if (mSubTotal > 0) {
             ll_checkout_place_order.visibility = View.VISIBLE
 
             mTotalAmount = mSubTotal + 10.0
-            tv_checkout_total_amount.text = "$$mTotalAmount"
+            tv_checkout_total_amount.text = "RM$mTotalAmount"
         } else {
             ll_checkout_place_order.visibility = View.GONE
         }
@@ -197,5 +196,22 @@ class CheckoutActivity : BaseActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    fun allDetailsUpdatedSuccessfully() {
+
+        // TODO Step 6: Move the piece of code from OrderPlaceSuccess to here.
+        // START
+        // Hide the progress dialog.
+        hideProgressDialog()
+
+        Toast.makeText(this@CheckoutActivity, "Your order placed successfully.", Toast.LENGTH_SHORT)
+                .show()
+
+        val intent = Intent(this@CheckoutActivity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+        // END
     }
 }
