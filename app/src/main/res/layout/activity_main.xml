@@ -85,12 +85,6 @@
             android:id="@+id/bottom_nav"
             layout="@layout/bottom_nav_view"
             android:visibility="visible" />
-
-
     </FrameLayout>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
