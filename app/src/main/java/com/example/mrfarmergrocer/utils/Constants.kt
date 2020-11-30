@@ -12,6 +12,7 @@ object Constants {
     const val USERS: String = "users"
     const val PRODUCTS: String = "products"
     const val CART_ITEMS: String = "cart_items"
+    const val ORDERS: String = "orders"
 
     const val MRFARMERGROCER_PREFERENCES: String = "MrFarmerGrocerPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
@@ -54,7 +55,6 @@ object Constants {
     const val ADDRESSES: String = "addresses"
 
     const val EXTRA_ADDRESS_DETAILS: String = "AddressDetails"
-
     const val EXTRA_SELECTED_ADDRESS: String = "extra_selected_address"
     /**
      * A function for user profile image selection from phone storage.
