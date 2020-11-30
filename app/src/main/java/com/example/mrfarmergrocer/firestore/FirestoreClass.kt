@@ -217,6 +217,7 @@ class FirestoreClass {
      * A function to get the products list from cloud firestore.
      *
      */
+    /*
     fun getProductsList(activity: Activity) {
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.PRODUCTS)
@@ -254,6 +255,8 @@ class FirestoreClass {
                     Log.e("Get Product List", "Error while getting product list.", e)
                 }
     }
+    */
+
 
     /**
      * A function to get all the product list from the cloud firestore.
@@ -424,6 +427,54 @@ class FirestoreClass {
 
                 Log.e(activity.javaClass.simpleName, "Error while getting the cart list items.", e)
             }
+    }
+
+
+    fun getProductsList(activity: Activity, tabPosition: Int) {
+        var category_selected = ""
+        when(tabPosition) {
+            0 -> category_selected ="vegetables"
+            1 -> category_selected ="fruits"
+            2 -> category_selected ="seafoods"
+            3 -> category_selected ="chicken"
+            4 -> category_selected ="eggs"
+        }
+        mFireStore.collection(Constants.PRODUCTS)
+                .whereEqualTo("category", category_selected)
+                .get() // Will get the documents snapshots.
+                .addOnSuccessListener { document ->
+
+                    // Here we get the list of cart items in the form of documents.
+                    Log.e(activity.javaClass.simpleName, document.documents.toString())
+
+                    // Here we have created a new instance for Cart Items ArrayList.
+                    val list: ArrayList<Product> = ArrayList()
+
+                    // A for loop as per the list of documents to convert them into Cart Items ArrayList.
+                    for (i in document.documents) {
+
+                        val product = i.toObject(Product::class.java)!!
+                        product.product_id = i.id
+
+                        list.add(product)
+                    }
+
+                    when (activity) {
+                        is ProductsActivity -> {
+                            activity.successProductsListFromFireStore(list)
+                        }
+                    }
+                }
+                .addOnFailureListener { e ->
+                    // Hide the progress dialog if there is an error based on the activity instance.
+                    when (activity) {
+                        is ProductsActivity -> {
+                            activity.hideProgressDialog()
+                        }
+                    }
+
+                    Log.e(activity.javaClass.simpleName, "Error while getting the cart list items.", e)
+                }
     }
 
     /**
