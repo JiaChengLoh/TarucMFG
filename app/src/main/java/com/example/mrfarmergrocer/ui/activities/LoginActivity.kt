@@ -56,9 +56,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             editor.putBoolean("CHECKBOX", checked)
             editor.apply()
 
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            //val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            //startActivity(intent)
+            //finish()
         }
 
         // Click event assigned to Forgot Password text.
