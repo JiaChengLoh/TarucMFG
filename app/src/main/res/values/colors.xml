@@ -14,6 +14,7 @@
 
     <color name="colorTheme青色呱">#3ce588</color>
     <color name="colorTheme蓝色呱">#0b8ccb</color>
+    <color name="colorMenu">#0dc6b6</color>
 
     <color name="colorPrimaryText">#222934</color>
     <color name="colorSecondaryText">#989898</color>
