@@ -4,51 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:windowSoftInputMode="stateVisible|adjustResize"
     android:background="@color/colorOffWhite"
     tools:context=".ui.activities.MainActivity">
-
-
-    <FrameLayout
-        android:id="@+id/fl_wrapper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search Here" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="62dp"
-            android:layout_height="44dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="@dimen/cart_image_margin"
-            android:adjustViewBounds="true"
-            android:clickable="true"
-            android:paddingRight="@dimen/cart_image_margin"
-            app:srcCompat="@drawable/ic_vector_cart"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="350dp"
-            app:srcCompat="@drawable/announcement" />
-
-        <include
-            android:id="@+id/bottom_nav"
-            layout="@layout/bottom_nav_view"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_items"
@@ -88,5 +46,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal" />
+
+    <FrameLayout
+        android:id="@+id/fl_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Here" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="62dp"
+            android:layout_height="44dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/cart_image_margin"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:paddingRight="@dimen/cart_image_margin"
+            app:srcCompat="@drawable/ic_vector_cart"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="350dp"
+            app:srcCompat="@drawable/announcement" />
+
+        <include
+            android:id="@+id/bottom_nav"
+            layout="@layout/bottom_nav_view"
+            android:visibility="visible" />
+
+
+    </FrameLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
