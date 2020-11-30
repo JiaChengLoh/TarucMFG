@@ -65,7 +65,6 @@ class AddEditAddressActivity : BaseActivity() {
         }
         // END
 
-        // TODO Step 7: Assign the on click event of submit button and save the address.
         btn_submit_address.setOnClickListener {
             saveAddressToFirestore()
         }
@@ -87,9 +86,6 @@ class AddEditAddressActivity : BaseActivity() {
         toolbar_add_edit_address_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
-
-    // TODO Step 2: Create a function to validate the address input entries.
-    // START
     private fun validateData(): Boolean {
         return when {
 
@@ -129,11 +125,7 @@ class AddEditAddressActivity : BaseActivity() {
             }
         }
     }
-    // END
 
-
-    // TODO Step 5: Create a function to save the address to the cloud firestore.
-    // START
     /**
      * A function to save the address to the cloud firestore.
      */
