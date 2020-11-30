@@ -93,6 +93,7 @@
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -202,12 +203,35 @@
                 android:text="@string/btn_lbl_save"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/btn_textSize"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rg_gender"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <com.example.mrfarmergrocer.utils.MFGButton
+                android:id="@+id/btn_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingTop="@dimen/btn_padding"
+                android:paddingBottom="@dimen/btn_padding"
+                android:text="@string/btn_lbl_save"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/btn_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_save"
+                app:layout_constraintVertical_bias="1.0" />
+
 
             <com.example.mrfarmergrocer.utils.MFGButton
                 android:id="@+id/btn_logout"
@@ -225,12 +249,18 @@
                 android:text="@string/btn_lbl_logout"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/btn_textSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_save"/>
+                app:layout_constraintTop_toBottomOf="@id/btn_address"/>
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 
     <FrameLayout
         android:id="@+id/frameLayout"

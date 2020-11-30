@@ -46,6 +46,7 @@
     <string name="rb_lbl_male">MALE</string>
     <string name="rb_lbl_female">FEMALE</string>
     <string name="btn_lbl_save">Save</string>
+    <string name="btn_lbl_address">Address</string>
 
     <string name="read_storage_permission_denied">Oops, you just denied the permission for storage. You can also allow it from settings.</string>
     <string name="image_selection_failed">Image selection Failed!</string>
@@ -92,6 +93,13 @@
     <string name="msg_your_address_updated_successfully">Your address was updated successfully.</string>
 
     <string name="err_your_address_deleted_successfully">Your address was deleted successfully.</string>
+
+    <string name="cat_vegetables">Vegetables</string>
+    <string name="cat_fruits">Fruits</string>
+    <string name="cat_seafood">Seafoods</string>
+    <string name="cat_chicken">Chicken</string>
+    <string name="cat_eggs">Eggs</string>
+
 
     <string name="title_product_details">PRODUCT DETAILS</string>
     <string name="lbl_product_description">Product Description</string>

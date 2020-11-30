@@ -73,27 +73,27 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vegetables" />
+                android:text="@string/cat_vegetables" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fruits" />
+                android:text="@string/cat_fruits" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seafoods" />
+                android:text="@string/cat_seafood" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chicken" />
+                android:text="@string/cat_chicken" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Eggs" />
+                android:text="@string/cat_eggs" />
         </com.google.android.material.tabs.TabLayout>
 
     </FrameLayout>
