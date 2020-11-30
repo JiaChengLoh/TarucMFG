@@ -40,7 +40,7 @@ open class MyProductsListAdapter(
             GlideLoader(context).loadProductPicture(model.image, holder.itemView.iv_item_image)
 
             holder.itemView.tv_item_name.text = model.title
-            holder.itemView.tv_item_price.text = "${model.price}"
+            holder.itemView.tv_item_price.text = "RM ${model.price}"
 
             holder.itemView.setOnClickListener {
                 // Launch Product details screen.
@@ -51,9 +51,9 @@ open class MyProductsListAdapter(
             holder.itemView.setOnClickListener {
                 // Launch Product details screen.
                 val intent = Intent(context, ProductDetailsActivity::class.java)
-                // START
+
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
-                // END
+
                 context.startActivity(intent)
             }
         }

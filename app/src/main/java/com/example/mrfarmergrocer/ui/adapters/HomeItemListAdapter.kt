@@ -55,7 +55,7 @@ open class HomeItemsListAdapter(
                     holder.itemView.iv_home_item_image
             )
             holder.itemView.tv_home_item_title.text = model.title
-            holder.itemView.tv_home_item_price.text = "${model.price}"
+            holder.itemView.tv_home_item_price.text = "RM ${model.price}"
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {

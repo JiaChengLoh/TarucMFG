@@ -122,5 +122,11 @@ class AddressListActivity : BaseActivity() {
         toolbar_address_list_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
+    /*
+    override fun onResume() {
+        super.onResume()
+        getAddressList()
+    }
+    */
 
 }

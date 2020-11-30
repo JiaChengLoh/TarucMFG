@@ -122,7 +122,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_product_details_description">
 
                 <com.example.mrfarmergrocer.utils.MFGTextViewBold
-                    android:id="@+id/tv_product_details_quantity"
+                    android:id="@+id/tv_product_details_stock_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/product_details_stock_quantity_paddingStartEnd"

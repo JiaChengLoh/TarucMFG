@@ -233,7 +233,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         }
 
         if (mobileNumber.isNotEmpty()) {
-            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+            userHashMap[Constants.MOBILE] = mobileNumber.toString()
         }
 
         userHashMap[Constants.GENDER] = gender

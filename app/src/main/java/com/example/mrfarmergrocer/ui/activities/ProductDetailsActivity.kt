@@ -2,8 +2,10 @@ package com.example.mrfarmergrocer.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.firestore.FirestoreClass
 import com.example.mrfarmergrocer.models.CartItem
@@ -92,12 +94,31 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         )
 
         tv_product_details_title.text = product.title
-        tv_product_details_price.text = "${product.price}"
+        tv_product_details_price.text = "RM ${product.price}"
         tv_product_details_description.text = product.description
         tv_product_details_available_quantity.text = product.stock_amount
 
-        //Call the function to check the product exist in the cart or not from the firestore class.
-        FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+        // Update the UI if the stock quantity is 0.
+        if(product.stock_amount.toInt() == 0){
+
+            // Hide Progress dialog.
+            hideProgressDialog()
+
+            // Hide the AddToCart button if the item is already in the cart.
+            btn_add_to_cart.visibility = View.GONE
+
+            tv_product_details_stock_quantity.text =
+                    resources.getString(R.string.lbl_out_of_stock)
+
+            tv_product_details_stock_quantity.setTextColor(
+                    ContextCompat.getColor(
+                            this@ProductDetailsActivity,
+                            R.color.colorSnackBarError
+                    )
+            )
+        }else{
+            FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+        }
     }
 
     /**
@@ -138,7 +159,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
                     addToCart()
                 }
 
-                R.id.btn_go_to_cart->{
+                R.id.btn_go_to_cart-> {
                     startActivity(Intent(this@ProductDetailsActivity, CartListActivity::class.java))
                 }
             }
