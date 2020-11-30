@@ -1,5 +1,6 @@
 package com.example.mrfarmergrocer.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,6 +10,7 @@ import com.example.mrfarmergrocer.firestore.FirestoreClass
 import com.example.mrfarmergrocer.models.CartItem
 import com.example.mrfarmergrocer.models.Product
 import com.example.mrfarmergrocer.ui.adapters.CartItemsListAdapter
+import com.example.mrfarmergrocer.utils.Constants
 import kotlinx.android.synthetic.main.activity_cart_list.*
 
 class CartListActivity : BaseActivity() {
@@ -21,6 +23,12 @@ class CartListActivity : BaseActivity() {
         setContentView(R.layout.activity_cart_list)
 
         setupActionBar()
+
+        btn_checkout.setOnClickListener {
+            val intent = Intent(this@CartListActivity, OrderDetailsActivity::class.java)
+            intent.putExtra(Constants.EXTRA_SELECT_ADDRESS, true)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {

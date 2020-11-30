@@ -178,7 +178,7 @@ class CheckoutActivity : BaseActivity() {
             "10.0", // The Shipping Charge is fixed as $10 for now in our case.
             mTotalAmount.toString(),
 
-            System.currentTimeMillis()
+                System.currentTimeMillis()
         )
 
         FirestoreClass().placeOrder(this@CheckoutActivity, order)
@@ -189,15 +189,7 @@ class CheckoutActivity : BaseActivity() {
      */
     fun orderPlacedSuccess() {
 
-        hideProgressDialog()
-
-        Toast.makeText(this@CheckoutActivity, "Your order placed successfully.", Toast.LENGTH_SHORT)
-            .show()
-
-        val intent = Intent(this@CheckoutActivity, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        finish()
+        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemsList)
     }
 
     fun allDetailsUpdatedSuccessfully() {
