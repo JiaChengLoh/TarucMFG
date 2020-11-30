@@ -50,16 +50,47 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
 
-        // Here, the some of the edittext components are disabled because it is added at a time of Registration.
-        et_first_name.isEnabled = false
-        et_first_name.setText(mUserDetails.firstName)
+        // If the profile is incomplete then user is from login screen and wants to complete the profile.
+        if (mUserDetails.profileCompleted == 0) {
+            // Update the title of the screen to complete profile.
+            tv_title.text = resources.getString(R.string.title_complete_profile)
 
-        et_last_name.isEnabled = false
-        et_last_name.setText(mUserDetails.lastName)
+            // Here, the some of the edittext components are disabled because it is added at a time of Registration.
+            et_first_name.isEnabled = false
+            et_first_name.setText(mUserDetails.firstName)
 
-        et_email.isEnabled = false
-        et_email.setText(mUserDetails.email)
+            et_last_name.isEnabled = false
+            et_last_name.setText(mUserDetails.lastName)
 
+            et_email.isEnabled = false
+            et_email.setText(mUserDetails.email)
+        } else {
+
+            // Call the setup action bar function.
+            setupActionBar()
+
+            // Update the title of the screen to edit profile.
+            tv_title.text = resources.getString(R.string.title_edit_profile)
+
+            // Load the image using the GlideLoader class with the use of Glide Library.
+            GlideLoader(this@UserProfileActivity).loadUserPicture(mUserDetails.image, iv_user_photo)
+
+            // Set the existing values to the UI and allow user to edit except the Email ID.
+            et_first_name.setText(mUserDetails.firstName)
+            et_last_name.setText(mUserDetails.lastName)
+
+            et_email.isEnabled = false
+            et_email.setText(mUserDetails.email)
+
+            if (mUserDetails.mobile != "") {
+                et_mobile_number.setText(mUserDetails.mobile.toString())
+            }
+            if (mUserDetails.gender == Constants.MALE) {
+                rb_male.isChecked = true
+            } else {
+                rb_female.isChecked = true
+            }
+        }
         // Assign the on click event to the user profile photo.
         iv_user_photo.setOnClickListener(this@UserProfileActivity)
 
@@ -189,6 +220,19 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+    private fun setupActionBar() {
+
+        setSupportActionBar(toolbar_user_profile_activity)
+
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp)
+        }
+
+        toolbar_user_profile_activity.setNavigationOnClickListener { onBackPressed() }
+    }
+
     /**
      * A function to validate the input entries for profile details.
      */
@@ -217,11 +261,22 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         val userHashMap = HashMap<String, Any>()
 
-        // Here the field which are not editable needs no update. So, we will update user Mobile Number and Gender for now.
+        // Get the FirstName from editText and trim the space
+        val firstName = et_first_name.text.toString().trim { it <= ' ' }
+        if (firstName != mUserDetails.firstName) {
+            userHashMap[Constants.FIRST_NAME] = firstName
+        }
+
+        // Get the LastName from editText and trim the space
+        val lastName = et_last_name.text.toString().trim { it <= ' ' }
+        if (lastName != mUserDetails.lastName) {
+            userHashMap[Constants.LAST_NAME] = lastName
+        }
+
+        // TODO Step 6: Email ID is not editable so we don't need to add it here to get the text from EditText.
 
         // Here we get the text from editText and trim the space
         val mobileNumber = et_mobile_number.text.toString().trim { it <= ' ' }
-
         val gender = if (rb_male.isChecked) {
             Constants.MALE
         } else {
@@ -232,22 +287,27 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
         }
 
-        if (mobileNumber.isNotEmpty()) {
-            userHashMap[Constants.MOBILE] = mobileNumber.toString()
+        // TODO Step 7: Update the code here if it is to edit the profile.
+        if (mobileNumber.isNotEmpty() && mobileNumber != mUserDetails.mobile.toString()) {
+            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
         }
 
-        userHashMap[Constants.GENDER] = gender
+        if (gender.isNotEmpty() && gender != mUserDetails.gender) {
+            userHashMap[Constants.GENDER] = gender
+        }
 
-        // START
+        // Here if user is about to complete the profile then update the field or else no need.
         // 0: User profile is incomplete.
         // 1: User profile is completed.
-        userHashMap[Constants.COMPLETE_PROFILE] = 1
+        if (mUserDetails.profileCompleted == 0) {
+            userHashMap[Constants.COMPLETE_PROFILE] = 1
+        }
         // END
 
         // call the registerUser function of FireStore class to make an entry in the database.
         FirestoreClass().updateUserProfileData(
-            this@UserProfileActivity,
-            userHashMap
+                this@UserProfileActivity,
+                userHashMap
         )
     }
 

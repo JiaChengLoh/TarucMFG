@@ -62,6 +62,7 @@ class FirestoreClass {
         return currentUserID
     }
 
+
     fun getUserDetails(activity: Activity) {
 
         // Here we pass the collection name from which we wants the data.
@@ -96,6 +97,10 @@ class FirestoreClass {
                             // Call a function of base activity for transferring the result to it.
                             activity.userLoggedInSuccess(user)
                         }
+                        is AccountActivity ->{
+                            // Call a function of base activity for transferring the result to it.
+                            activity.userDetailsSuccess(user)
+                        }
                     }
 
                 }
@@ -105,10 +110,10 @@ class FirestoreClass {
                         is LoginActivity -> {
                             activity.hideProgressDialog()
                         }
-                        /*
+
                         is AccountActivity -> {
                             activity.hideProgressDialog()
-                        }*/
+                        }
                     }
 
                     Log.e(
@@ -218,6 +223,7 @@ class FirestoreClass {
     fun getProductsList(activity: Activity) {
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.PRODUCTS)
+
                 .get() // Will get the documents snapshots.
                 .addOnSuccessListener { document  ->
 

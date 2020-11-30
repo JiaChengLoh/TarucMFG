@@ -179,6 +179,10 @@ class AddEditAddressActivity : BaseActivity() {
 
     }
 
+    /**
+     * A function to notify the success result of address saved.
+     */
+
     fun addUpdateAddressSuccess() {
 
         // Hide progress dialog
