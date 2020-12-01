@@ -147,13 +147,13 @@ class CheckoutActivity : BaseActivity() {
 
         tv_checkout_sub_total.text = "RM " + String.format("%.2f", mSubTotal)
 
-        tv_checkout_shipping_charge.text = "RM10.00"
+        tv_checkout_shipping_charge.text = "RM 10.00"
 
         if (mSubTotal > 0) {
             ll_checkout_place_order.visibility = View.VISIBLE
 
             mTotalAmount = mSubTotal + 10.00
-            tv_checkout_total_amount.text = "RM" + String.format("%.2f", mTotalAmount)
+            tv_checkout_total_amount.text = "RM " + String.format("%.2f", mTotalAmount)
         } else {
             ll_checkout_place_order.visibility = View.GONE
         }
@@ -174,9 +174,9 @@ class CheckoutActivity : BaseActivity() {
             mAddressDetails!!,
             "My order ${System.currentTimeMillis()}",
             mCartItemsList[0].image,
-            mSubTotal.toString(),
-            "10.0", // The Shipping Charge is fixed as $10 for now in our case.
-            mTotalAmount.toString(),
+            String.format("%.2f", mSubTotal),
+            "10.00", // The Shipping Charge is fixed as $10 for now in our case.
+            String.format("%.2f", mTotalAmount),
 
                 System.currentTimeMillis()
         )
