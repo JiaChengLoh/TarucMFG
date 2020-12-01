@@ -289,7 +289,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         // TODO Step 7: Update the code here if it is to edit the profile.
         if (mobileNumber.isNotEmpty() && mobileNumber != mUserDetails.mobile.toString()) {
-            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+            userHashMap[Constants.MOBILE] = mobileNumber.toString()
         }
 
         if (gender.isNotEmpty() && gender != mUserDetails.gender) {

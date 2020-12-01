@@ -53,13 +53,12 @@
     <string name="err_msg_enter_mobile_number">Please enter mobile number.</string>
     <string name="msg_profile_update_success">Your profile is updated successfully.</string>
 
-    <string name="title_home">Home</string>
-    <string name="title_products">Products</string>
-    <string name="title_orders">Orders</string>
-    <string name="title_account">Account</string>
-    <string name="cart_message">This is cart</string>
-
+    <string name="title_home">HOME</string>
+    <string name="title_products">PRODUCTS</string>
+    <string name="title_orders">ORDERS</string>
+    <string name="title_account">ACCOUNT</string>
     <string name="title_settings">ACCOUNT</string>
+    <string name="cart_message">This is cart</string>
     <string name="lbl_edit">Edit</string>
     <string name="lbl_addresses">Addresses</string>
 
