@@ -78,16 +78,16 @@ class OrdersActivity : BaseActivity() {
         // START
         if (ordersList.size > 0) {
 
-            rv_my_order_items.visibility = View.VISIBLE
+            rv_order_items.visibility = View.VISIBLE
             tv_no_orders_found.visibility = View.GONE
 
-            rv_my_order_items.layoutManager = LinearLayoutManager(this)
-            rv_my_order_items.setHasFixedSize(true)
+            rv_order_items.layoutManager = LinearLayoutManager(this)
+            rv_order_items.setHasFixedSize(true)
 
             val myOrdersAdapter = OrdersListAdapter(this, ordersList)
-            rv_my_order_items.adapter = myOrdersAdapter
+            rv_order_items.adapter = myOrdersAdapter
         } else {
-            rv_my_order_items.visibility = View.GONE
+            rv_order_items.visibility = View.GONE
             tv_no_orders_found.visibility = View.VISIBLE
         }
         // END

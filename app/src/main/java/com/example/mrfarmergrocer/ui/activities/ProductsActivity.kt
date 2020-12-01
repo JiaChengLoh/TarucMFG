@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mrfarmergrocer.R
-import com.example.mrfarmergrocer.adapter.MyProductsListAdapter
+import com.example.mrfarmergrocer.ui.adapters.MyProductsListAdapter
 import com.example.mrfarmergrocer.firestore.FirestoreClass
 import com.example.mrfarmergrocer.models.Product
 import com.google.android.material.bottomnavigation.BottomNavigationView
