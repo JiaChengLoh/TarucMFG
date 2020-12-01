@@ -31,6 +31,11 @@ class AddressListActivity : BaseActivity() {
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_address_list)
 
+        if (intent.hasExtra(Constants.EXTRA_SELECT_ADDRESS)) {
+            mSelectAddress =
+                    intent.getBooleanExtra(Constants.EXTRA_SELECT_ADDRESS, false)
+        }
+
         setupActionBar()
 
         if (mSelectAddress) {
@@ -38,9 +43,10 @@ class AddressListActivity : BaseActivity() {
         }
 
         tv_add_address.setOnClickListener {
-            val intent = Intent(this@AddressListActivity,AddEditAddressActivity::class.java)
-            startActivity(intent)
+            val intent = Intent(this@AddressListActivity, AddEditAddressActivity::class.java)
+            startActivityForResult(intent, Constants.ADD_ADDRESS_REQUEST_CODE)
         }
+
         getAddressList()
     }
 
@@ -60,6 +66,7 @@ class AddressListActivity : BaseActivity() {
 
         getAddressList()
     }
+
     fun successAddressListFromFirestore(addressList: ArrayList<Address>) {
 
         // Hide the progress dialog
@@ -152,5 +159,4 @@ class AddressListActivity : BaseActivity() {
         getAddressList()
     }
     */
-
 }
