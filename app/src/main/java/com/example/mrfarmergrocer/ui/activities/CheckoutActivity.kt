@@ -26,10 +26,10 @@ class CheckoutActivity : BaseActivity() {
     private lateinit var mProductsList: ArrayList<Product>
     private lateinit var mCartItemsList: ArrayList<CartItem>
     // A global variable for the SubTotal Amount.
-    private var mSubTotal: Double = 0.0
+    private var mSubTotal: Double = 0.00
 
     // A global variable for the Total Amount.
-    private var mTotalAmount: Double = 0.0
+    private var mTotalAmount: Double = 0.00
     /**
      * This function is auto created by Android when the Activity Class is created.
      */
@@ -147,13 +147,13 @@ class CheckoutActivity : BaseActivity() {
 
         tv_checkout_sub_total.text = "RM " + String.format("%.2f", mSubTotal)
 
-        tv_checkout_shipping_charge.text = "RM 10.00"
+        tv_checkout_shipping_charge.text = "RM10.00"
 
         if (mSubTotal > 0) {
             ll_checkout_place_order.visibility = View.VISIBLE
 
-            mTotalAmount = mSubTotal + 10.0
-            tv_checkout_total_amount.text = "RM " + String.format("%.2f", mTotalAmount)
+            mTotalAmount = mSubTotal + 10.00
+            tv_checkout_total_amount.text = "RM" + String.format("%.2f", mTotalAmount)
         } else {
             ll_checkout_place_order.visibility = View.GONE
         }
@@ -194,6 +194,8 @@ class CheckoutActivity : BaseActivity() {
 
     fun allDetailsUpdatedSuccessfully() {
 
+        // TODO Step 6: Move the piece of code from OrderPlaceSuccess to here.
+        // START
         // Hide the progress dialog.
         hideProgressDialog()
 

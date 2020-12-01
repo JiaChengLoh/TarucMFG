@@ -117,7 +117,7 @@ class CartListActivity : BaseActivity() {
             val cartListAdapter = CartItemsListAdapter(this@CartListActivity, mCartListItems, true)
             rv_cart_items_list.adapter = cartListAdapter
 
-            var subTotal: Double = 0.0
+            var subTotal: Double = 0.00
 
             for (item in mCartListItems) {
 
@@ -139,7 +139,7 @@ class CartListActivity : BaseActivity() {
             if (subTotal > 0) {
                 ll_checkout.visibility = View.VISIBLE
 
-                val total = subTotal + 10
+                val total = subTotal + 10.00
                 tv_shipping_charge.text = "RM 10.00"
                 tv_total_amount.text = "RM " + String.format("%.2f", total)
             } else {
