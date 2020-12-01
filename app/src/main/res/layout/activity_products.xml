@@ -7,6 +7,15 @@
     android:background="@color/colorOffWhite"
     tools:context=".ui.activities.ProductsActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/app_gradient_color_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_my_product_items"
@@ -45,7 +54,6 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
-
 
     <FrameLayout
         android:id="@+id/fl_wrapper"

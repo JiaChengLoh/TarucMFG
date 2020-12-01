@@ -7,7 +7,7 @@
     tools:context=".ui.activities.OrdersActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_account_activity"
+        android:id="@+id/toolbar_order_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/app_gradient_color_background"
@@ -30,15 +30,13 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_my_order_items"
+        android:id="@+id/rv_order_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_account_activity"
+        android:layout_below="@+id/toolbar_order_activity"
         android:layout_above="@+id/bottom_nav"
         android:visibility="gone" />
-
 
     <com.example.mrfarmergrocer.utils.MFGTextView
         android:id="@+id/tv_no_orders_found"
@@ -57,12 +55,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal" />
 
-
     <include
         android:id="@+id/bottom_nav"
         layout="@layout/bottom_nav_view"
         android:visibility="visible" />
-
-
 
 </RelativeLayout>
