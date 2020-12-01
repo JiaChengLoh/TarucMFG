@@ -47,11 +47,8 @@ class OrdersActivity : BaseActivity() {
 
         getMyOrdersList()
     }
-    // END
 
 
-    // TODO Step 8: Create a function to call the firestore class function to get the list of my orders.
-    // START
     /**
      * A function to get the list of my orders.
      */
@@ -61,10 +58,7 @@ class OrdersActivity : BaseActivity() {
 
         FirestoreClass().getMyOrdersList(this@OrdersActivity)
     }
-    // END
 
-    // TODO Step 6: Create a function to get the success result of the my order list from cloud firestore.
-    // START
     /**
      * A function to get the success result of the my order list from cloud firestore.
      *

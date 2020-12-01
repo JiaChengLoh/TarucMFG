@@ -784,10 +784,8 @@ class FirestoreClass {
                         list.add(orderItem)
                     }
 
-                    // TODO Step 7: Notify the success result to base class.
-                    // START
                     activity.populateOrdersListInUI(list)
-                    // END
+
                 }
                 .addOnFailureListener { e ->
                     // Here call a function of base activity for transferring the result to it.

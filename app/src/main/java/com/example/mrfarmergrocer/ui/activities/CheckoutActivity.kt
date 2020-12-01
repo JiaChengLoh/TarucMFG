@@ -145,15 +145,15 @@ class CheckoutActivity : BaseActivity() {
             }
         }
 
-        tv_checkout_sub_total.text = "RM$mSubTotal"
+        tv_checkout_sub_total.text = "RM " + String.format("%.2f", mSubTotal)
 
-        tv_checkout_shipping_charge.text = "RM10.0"
+        tv_checkout_shipping_charge.text = "RM 10.00"
 
         if (mSubTotal > 0) {
             ll_checkout_place_order.visibility = View.VISIBLE
 
             mTotalAmount = mSubTotal + 10.0
-            tv_checkout_total_amount.text = "RM$mTotalAmount"
+            tv_checkout_total_amount.text = "RM " + String.format("%.2f", mTotalAmount)
         } else {
             ll_checkout_place_order.visibility = View.GONE
         }
@@ -194,8 +194,6 @@ class CheckoutActivity : BaseActivity() {
 
     fun allDetailsUpdatedSuccessfully() {
 
-        // TODO Step 6: Move the piece of code from OrderPlaceSuccess to here.
-        // START
         // Hide the progress dialog.
         hideProgressDialog()
 

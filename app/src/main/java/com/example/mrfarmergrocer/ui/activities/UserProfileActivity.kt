@@ -273,7 +273,6 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             userHashMap[Constants.LAST_NAME] = lastName
         }
 
-        // TODO Step 6: Email ID is not editable so we don't need to add it here to get the text from EditText.
 
         // Here we get the text from editText and trim the space
         val mobileNumber = et_mobile_number.text.toString().trim { it <= ' ' }
@@ -287,7 +286,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
         }
 
-        // TODO Step 7: Update the code here if it is to edit the profile.
+        // Update the code here if it is to edit the profile.
         if (mobileNumber.isNotEmpty() && mobileNumber != mUserDetails.mobile.toString()) {
             userHashMap[Constants.MOBILE] = mobileNumber.toString()
         }
