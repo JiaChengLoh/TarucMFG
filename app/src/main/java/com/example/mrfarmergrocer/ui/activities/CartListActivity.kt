@@ -25,7 +25,7 @@ class CartListActivity : BaseActivity() {
         setupActionBar()
 
         btn_checkout.setOnClickListener {
-            val intent = Intent(this@CartListActivity, OrderDetailsActivity::class.java)
+            val intent = Intent(this@CartListActivity, CheckoutActivity::class.java)
             intent.putExtra(Constants.EXTRA_SELECT_ADDRESS, true)
             startActivity(intent)
         }
@@ -36,6 +36,7 @@ class CartListActivity : BaseActivity() {
 
         getProductList()
     }
+
 
     /**
      * A function for actionBar Setup.

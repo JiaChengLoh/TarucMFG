@@ -736,7 +736,7 @@ class FirestoreClass {
 
             val productHashMap = HashMap<String, Any>()
 
-            productHashMap[Constants.STOCK_AMOUNT] =
+            productHashMap[Constants.STOCK_QUANTITY] =
                     (cartItem.stock_quantity.toInt() - cartItem.cart_quantity.toInt()).toString()
 
             val documentReference = mFireStore.collection(Constants.PRODUCTS)
@@ -756,7 +756,6 @@ class FirestoreClass {
         writeBatch.commit().addOnSuccessListener {
 
             activity.allDetailsUpdatedSuccessfully()
-            // END
 
         }.addOnFailureListener { e ->
             // Here call a function of base activity for transferring the result to it.
