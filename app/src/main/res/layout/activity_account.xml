@@ -38,15 +38,16 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:paddingStart="@dimen/toolbar_title_paddingStart"
+                    android:paddingLeft="0dp"
                     android:paddingEnd="0dp"
+                    android:paddingRight="0dp"
                     android:text="@string/title_settings"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/toolbar_title_text_size"
-                    android:textStyle="bold"
-                    android:paddingRight="0dp"
-                    android:paddingLeft="0dp" />
+                    android:textStyle="bold" />
 
             </androidx.appcompat.widget.Toolbar>
+
         </FrameLayout>
 
         <FrameLayout
@@ -72,12 +73,54 @@
                 android:background="@drawable/user_image_background" />
         </FrameLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fl_header_bg"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="13dp"
+            android:clickable="true"
+            android:src="@drawable/info" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/floatingActionButtonInfo"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:clickable="true"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_phone_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_contact"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:clickable="true"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_location_on_24" />
+
         <com.example.mrfarmergrocer.utils.MFGTextView
             android:id="@+id/tv_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/fl_header_bg"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_margin="16dp"
             android:background="@drawable/item_grey_border_background"
             android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -86,27 +129,6 @@
             android:paddingEnd="@dimen/settings_edit_label_marginStartEnd"
             android:paddingBottom="@dimen/settings_edit_label_marginTopBottom"
             android:text="@string/lbl_edit"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="@dimen/settings_edit_label_textSize" />
-
-        <com.example.mrfarmergrocer.utils.MFGTextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fl_header_bg"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/item_grey_border_background"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:paddingStart="@dimen/settings_edit_label_marginStartEnd"
-            android:paddingTop="@dimen/settings_edit_label_marginTopBottom"
-            android:paddingEnd="@dimen/settings_edit_label_marginStartEnd"
-            android:paddingBottom="@dimen/settings_edit_label_marginTopBottom"
-            android:text="@string/lbl_location"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/settings_edit_label_textSize" />
 
@@ -183,32 +205,13 @@
         </LinearLayout>
 
         <com.example.mrfarmergrocer.utils.MFGButton
-            android:id="@+id/btn_contact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll_address"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/settings_button_marginStartEnd"
-            android:layout_marginTop="@dimen/settings_button_marginTopBottom"
-            android:layout_marginEnd="@dimen/settings_button_marginStartEnd"
-            android:layout_marginBottom="@dimen/settings_button_marginTopBottom"
-            android:background="@drawable/button_background"
-            android:foreground="?attr/selectableItemBackground"
-            android:gravity="center"
-            android:paddingTop="@dimen/btn_padding"
-            android:paddingBottom="@dimen/btn_padding"
-            android:text="@string/btn_lbl_contact"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/btn_textSize" />
-
-        <com.example.mrfarmergrocer.utils.MFGButton
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_contact"
+            android:layout_below="@+id/ll_address"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/settings_button_marginStartEnd"
-            android:layout_marginTop="@dimen/settings_button_marginTopBottom"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="@dimen/settings_button_marginStartEnd"
             android:layout_marginBottom="@dimen/settings_button_marginTopBottom"
             android:background="@drawable/button_background"
@@ -219,6 +222,8 @@
             android:text="@string/btn_lbl_logout"
             android:textColor="@android:color/white"
             android:textSize="@dimen/btn_textSize" />
+
+
 
     </RelativeLayout>
 </ScrollView>

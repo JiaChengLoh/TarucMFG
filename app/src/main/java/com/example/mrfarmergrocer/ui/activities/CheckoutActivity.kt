@@ -194,8 +194,6 @@ class CheckoutActivity : BaseActivity() {
 
     fun allDetailsUpdatedSuccessfully() {
 
-        // TODO Step 6: Move the piece of code from OrderPlaceSuccess to here.
-        // START
         // Hide the progress dialog.
         hideProgressDialog()
 
@@ -206,6 +204,6 @@ class CheckoutActivity : BaseActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
-        // END
+
     }
 }

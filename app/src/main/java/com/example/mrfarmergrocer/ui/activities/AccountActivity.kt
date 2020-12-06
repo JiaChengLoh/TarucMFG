@@ -36,7 +36,7 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
         btn_logout.setOnClickListener(this@AccountActivity)
         btn_contact.setOnClickListener(this@AccountActivity)
         ll_address.setOnClickListener(this@AccountActivity)
-        tv_location.setOnClickListener(this@AccountActivity)
+        floatingActionButtonInfo.setOnClickListener(this@AccountActivity)
 
     }
 
@@ -79,9 +79,17 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
                     finish()
                 }
 
-                R.id.tv_location -> {
-                    val intent = Intent(this@AccountActivity, LocationActivity::class.java)
-                    startActivity(intent)
+                R.id.floatingActionButtonInfo -> {
+                    if (btn_contact.visibility == View.GONE) {
+                        btn_contact.visibility = View.VISIBLE
+                    } else {
+                        btn_contact.visibility = View.GONE
+                    }
+                    if (btn_location.visibility == View.GONE) {
+                        btn_location.visibility = View.VISIBLE
+                    } else {
+                        btn_location.visibility = View.GONE
+                    }
                 }
             }
         }
