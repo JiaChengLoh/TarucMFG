@@ -35,6 +35,7 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
         tv_edit.setOnClickListener(this@AccountActivity)
         btn_logout.setOnClickListener(this@AccountActivity)
         btn_contact.setOnClickListener(this@AccountActivity)
+        btn_location.setOnClickListener(this@AccountActivity)
         ll_address.setOnClickListener(this@AccountActivity)
         floatingActionButtonInfo.setOnClickListener(this@AccountActivity)
 
@@ -63,6 +64,11 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
 
                 R.id.btn_contact -> {
                     contactUs()
+                }
+
+                R.id.btn_location -> {
+                    val intent = Intent(this@AccountActivity, LocationActivity::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.btn_logout -> {
