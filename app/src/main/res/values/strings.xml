@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Mr Farmer Grocer</string>
+    <string name="google_maps_key1" templateMergeStrategy="preserve" translatable="false">AIzaSyA8Kiod5dtoN7UtiN4Ie2lpUIer6s6_Y0Y</string>
+
 
     <string name="content_description">image</string>
     <string name="title_login">LOGIN</string>
@@ -8,11 +10,13 @@
     <string name="lbl_forgot_password">Forgot Password?</string>
     <string name="btn_lbl_login">Login</string>
     <string name="btn_lbl_logout">Logout</string>
+    <string name="btn_lbl_contact">Contact Us</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="register"><u>Register</u></string>
     <string name="remember_me">Remember Me</string>
 
     <string name="create_an_account">CREATE AN ACCOUNT</string>
+
 
     <string name="hint_last_name">Last name</string>
     <string name="hint_first_name">First name</string>
@@ -58,6 +62,8 @@
     <string name="title_orders">ORDERS</string>
     <string name="title_account">ACCOUNT</string>
     <string name="title_settings">ACCOUNT</string>
+    <string name="title_activity_mapss">Mapp</string>
+
     <string name="cart_message">This is cart</string>
     <string name="lbl_edit">Edit</string>
     <string name="lbl_addresses">Addresses</string>

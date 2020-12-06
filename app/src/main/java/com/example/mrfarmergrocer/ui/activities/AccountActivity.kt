@@ -3,7 +3,9 @@ package com.example.mrfarmergrocer.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.mrfarmergrocer.R
 import com.example.mrfarmergrocer.models.User
@@ -32,6 +34,7 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
 
         tv_edit.setOnClickListener(this@AccountActivity)
         btn_logout.setOnClickListener(this@AccountActivity)
+        btn_contact.setOnClickListener(this@AccountActivity)
         ll_address.setOnClickListener(this@AccountActivity)
         tv_location.setOnClickListener(this@AccountActivity)
 
@@ -56,6 +59,10 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
                 R.id.ll_address -> {
                     val intent = Intent(this@AccountActivity, AddressListActivity::class.java)
                     startActivity(intent)
+                }
+
+                R.id.btn_contact -> {
+                    contactUs()
                 }
 
                 R.id.btn_logout -> {
@@ -122,6 +129,22 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
         tv_gender.text = user.gender
         tv_email.text = user.email
         tv_mobile_number.text = "${user.mobile}"
+    }
+
+
+    private fun contactUs() {
+        //Log.i("LOG", "$myLongitude, $myLatitude")
+
+        val smsBody = StringBuffer()
+        smsBody.append("Hi, Mr Farmer Grocer")
+
+        try {
+            val mobile = "60146265349"
+            val msg = smsBody.toString()
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=$mobile&text=$msg")))
+        } catch (e: java.lang.Exception) {
+            //whatsapp app not install
+        }
     }
 
 }
