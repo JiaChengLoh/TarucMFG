@@ -33,7 +33,7 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
         tv_edit.setOnClickListener(this@AccountActivity)
         btn_logout.setOnClickListener(this@AccountActivity)
         ll_address.setOnClickListener(this@AccountActivity)
-
+        tv_location.setOnClickListener(this@AccountActivity)
 
     }
 
@@ -72,6 +72,10 @@ class AccountActivity : BaseActivity(), View.OnClickListener  {
                     finish()
                 }
 
+                R.id.tv_location -> {
+                    val intent = Intent(this@AccountActivity, LocationActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
