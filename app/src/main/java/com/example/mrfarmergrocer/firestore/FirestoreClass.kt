@@ -217,52 +217,6 @@ class FirestoreClass {
 
 
     /**
-     * A function to get the products list from cloud firestore.
-     *
-     */
-    /*
-    fun getProductsList(activity: Activity) {
-        // The collection name for PRODUCTS
-        mFireStore.collection(Constants.PRODUCTS)
-
-                .get() // Will get the documents snapshots.
-                .addOnSuccessListener { document  ->
-
-                    // Here we get the list of boards in the form of documents.
-                    Log.e("Products List", document.documents.toString())
-
-                    // Here we have created a new instance for Products ArrayList.
-                    val productsList: ArrayList<Product> = ArrayList()
-
-                    // A for loop as per the list of documents to convert them into Products ArrayList.
-                    for (i in document.documents) {
-
-                        val product = i.toObject(Product::class.java)
-                        product!!.product_id = i.id
-
-                        productsList.add(product)
-                    }
-
-                    when (activity) {
-                        is ProductsActivity -> {
-                            activity.successProductsListFromFireStore(productsList)
-                        }
-                    }
-                }
-                .addOnFailureListener { e ->
-                    // Hide the progress dialog if there is any error based on the base class instance.
-                    when (activity) {
-                        is ProductsActivity -> {
-                            activity.hideProgressDialog()
-                        }
-                    }
-                    Log.e("Get Product List", "Error while getting product list.", e)
-                }
-    }
-    */
-
-
-    /**
      * A function to get all the product list from the cloud firestore.
      *
      * @param activity The activity is passed as parameter to the function because it is called from activity and need to the success result.
@@ -739,8 +693,8 @@ class FirestoreClass {
 
             val productHashMap = HashMap<String, Any>()
 
-            productHashMap[Constants.STOCK_QUANTITY] =
-                    (cartItem.stock_quantity.toInt() - cartItem.cart_quantity.toInt()).toString()
+            productHashMap[Constants.STOCK_AMOUNT] =
+                    (cartItem.stock_amount.toInt() - cartItem.cart_quantity.toInt()).toString()
 
             val documentReference = mFireStore.collection(Constants.PRODUCTS)
                     .document(cartItem.product_id)

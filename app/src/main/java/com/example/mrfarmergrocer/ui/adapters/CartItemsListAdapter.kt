@@ -133,7 +133,7 @@ open class CartItemsListAdapter(
                 // Call the update function of firestore class based on the cart quantity.
                 val cartQuantity: Int = model.cart_quantity.toInt()
 
-                if (cartQuantity < model.stock_quantity.toInt()) {
+                if (cartQuantity < model.stock_amount.toInt()) {
 
                     val itemHashMap = HashMap<String, Any>()
 
@@ -150,7 +150,7 @@ open class CartItemsListAdapter(
                         context.showErrorSnackBar(
                                 context.resources.getString(
                                         R.string.msg_for_available_stock,
-                                        model.stock_quantity
+                                        model.stock_amount
                                 ),
                                 true
                         )

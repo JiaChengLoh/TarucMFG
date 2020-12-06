@@ -106,10 +106,9 @@
     <string name="cat_chicken">Chicken</string>
     <string name="cat_eggs">Eggs</string>
 
-
     <string name="title_product_details">PRODUCT DETAILS</string>
     <string name="lbl_product_description">Product Description</string>
-    <string name="lbl_product_details_stock_quantity">Stock Quantity</string>
+    <string name="lbl_product_details_stock_amount">Stock Amount</string>
 
     <string name="title_checkout">CHECKOUT</string>
     <string name="checkout_lbl_product_items">Product Items</string>

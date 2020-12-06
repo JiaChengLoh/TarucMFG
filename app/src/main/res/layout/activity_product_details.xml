@@ -126,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/product_details_stock_quantity_paddingStartEnd"
-                    android:text="@string/lbl_product_details_stock_quantity"
+                    android:text="@string/lbl_product_details_stock_amount"
                     android:textColor="@color/item_value_text_color"
                     android:textSize="@dimen/product_details_label_textSize"
                     android:layout_marginRight="0dp" />

@@ -121,7 +121,7 @@ class CheckoutActivity : BaseActivity() {
         for (product in mProductsList) {
             for (cart in cartList) {
                 if (product.product_id == cart.product_id) {
-                    cart.stock_quantity = product.stock_amount
+                    cart.stock_amount = product.stock_amount
                 }
             }
         }
@@ -135,7 +135,7 @@ class CheckoutActivity : BaseActivity() {
 
         for (item in mCartItemsList) {
 
-            val availableQuantity = item.stock_quantity.toInt()
+            val availableQuantity = item.stock_amount.toInt()
 
             if (availableQuantity > 0) {
                 val price = item.price.toDouble()
