@@ -18,9 +18,11 @@ import kotlinx.android.synthetic.main.activity_checkout.*
 
 
 /**
+ *  developed by andychow
  * A CheckOut activity screen.
  */
 class CheckoutActivity : BaseActivity() {
+
 
     private var mAddressDetails: Address? = null
     private lateinit var mProductsList: ArrayList<Product>
